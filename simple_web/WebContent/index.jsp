@@ -5,14 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
 </head>
 <body>
-<p> This is our new web </p>
+<h1 align="center">Code Academy</h1>
+<h2 align="center">Stackoverflow data</h2>
+<button class="btn btn-primary" onclick="redirectPage()">Java</button>
 
-<form action="MainServlet" method="post">
-    User Name: <input type="text" name="realname">
-    Password: <input type="password" name="mypassword">
-    <input type="submit" value="Identification">
-</form> 
+<script type="text/javascript">
+function redirectPage(){
+    window.location.href="showdata.jsp";
+}
+</script>
 </body>
 </html>
