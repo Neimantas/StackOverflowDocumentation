@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\Sonique\eclipse-workspace2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-4017133826.index
-4213363210.index
-427277160.index
-68770689.index
-2352742989.index
-2225106815.index
-3805943645.index
