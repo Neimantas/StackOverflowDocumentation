@@ -1,5 +1,7 @@
 package models.DTO;
 
+import java.sql.Date;
+
 public class DTOexamples {
 	long Id;
     long DocTopicId;
