@@ -16,8 +16,7 @@ public class Service implements IService{
 	public List<Object> getListById(int id) {
 		// TODO Auto-generated method stub
 		Service srvcList = new Service();
-		List<Object> listById = new ArrayList();
-		
+		List<Object> listById = new ArrayList(); 
 //		for(Object lst: srvcList.getListObject()) {
 //			if(lst.getId() == id) {
 //				listById.add(lst);
