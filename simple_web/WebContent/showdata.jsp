@@ -4,19 +4,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+<title>JAVA data</title>
 </head>
 <body>
-<h1 align="center">Code Academy</h1>
-<h2 align="center">Stackoverflow data</h2>
-<button class="btn btn-primary" onclick="redirectPage()">Java</button>
-<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"  style="width:500px;height:600px;">
-<script type="text/javascript">
-function redirectPage(){
-    window.location.href="showdata.jsp";
-}
-</script>
+<div class="container">
+	<table class="table table-striped table-inverse">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>184</td>
+				<td>JEZUS</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
 </body>
 </html>
