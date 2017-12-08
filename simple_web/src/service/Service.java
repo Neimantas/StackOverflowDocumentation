@@ -25,7 +25,9 @@ public class Service implements IService{
 //		}
 		
 		srvcList.getListObject().forEach(s -> {
-			if(s.getId() == id) {
+//			int idChosen = s.getId();
+			int idChosen = 0;
+			if(idChosen == id) {
 				listById.add(listById);
 			}
 		});
@@ -39,7 +41,9 @@ public class Service implements IService{
 		List<Object> listByName = new ArrayList();
 		Service srvcList = new Service();
 		for(Object lst: srvcList.getListObject()) {
-			if(lst.getName() == name) {
+//			String chosenName = lst.getName();
+			String chosenName = null;
+			if(chosenName == name) {
 				listByName.add(lst);
 			}
 		}
