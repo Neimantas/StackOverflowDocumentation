@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/StackOverflowDocumentation.iml" filepath="$PROJECT_DIR$/.idea/StackOverflowDocumentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simple_web/simple_web.iml" filepath="$PROJECT_DIR$/simple_web/simple_web.iml" />
     </modules>
   </component>
 </project>
