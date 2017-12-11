@@ -21,10 +21,10 @@ public class MockService implements IMockService {
 		for (DocTagsVersionsMock item : docTagsVersionsList) {
 			
 			DocTagsVersions temp = new DocTagsVersions();
-				DocTags tempTags = new DocTags();
-				tempTags.id = item.doctagid.id;
-				tempTags.title= item.doctagid.title;
-			temp.doctagid = tempTags;
+//				DocTags tempTags = new DocTags();
+//				tempTags.id = item.doctagid.id;
+//				tempTags.title= item.doctagid.title;
+//			temp.doctagid = tempTags;
 			temp.id = item.id;
 			temp.title = item.title; 
 
