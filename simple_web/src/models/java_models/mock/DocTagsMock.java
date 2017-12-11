@@ -10,4 +10,5 @@ public class DocTagsMock {
 		this.id = id;
 		this.title = title;
 	}
+	
 }
