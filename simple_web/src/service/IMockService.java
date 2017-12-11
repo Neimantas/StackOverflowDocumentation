@@ -4,7 +4,6 @@ import java.util.List;
 
 import models.java_models.DocTagsVersions;
 import models.java_models.Topic;
-import models.java_models.mock.TopicMock;
 
 public interface IMockService {
 	public List<DocTagsVersions> getListObject();

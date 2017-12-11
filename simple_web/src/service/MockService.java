@@ -14,12 +14,12 @@ public class MockService implements IMockService {
 	@Override
 	public List<DocTagsVersions> getListObject() {
 		// TODO Auto-generated method stub
-		List<DocTagsVersionsMock> docTagsVersionsList = new ArrayList();
+		List<DocTagsVersionsMock> docTagsVersionsList = new ArrayList<>();
 		for(int i= 1; i<=10; i++) {
 			docTagsVersionsList.add(new DocTagsVersionsMock());
 		}
 		
-		List<DocTagsVersions> normalList = new ArrayList();
+		List<DocTagsVersions> normalList = new ArrayList<>();
 		for (DocTagsVersionsMock item : docTagsVersionsList) {
 			
 			DocTagsVersions temp = new DocTagsVersions();
