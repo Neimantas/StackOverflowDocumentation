@@ -1,8 +1,50 @@
 package models.java_models;
 
 public class Topic {
-	public long id;
-	public DocTags docTagId; // this field is in relation from doctags.json field Id.
-	public String title;
-	public String answer; //  this field is changed from "RemarksMarkdown" in DTO
+	long id;
+	long docTagId; // this field is in relation from doctags.json field Id.
+	String title;
+	String answer; //  this field is changed from "RemarksMarkdown" in DTO
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getDocTagId(long docTagId) {
+		return this.docTagId;
+	}
+
+	public void setDocTagId(long docTagId) {
+		this.docTagId = docTagId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	@Override
+	public String toString() {
+		return "Topic{" +
+				"id=" + id +
+				", docTagId=" + docTagId +
+				", title='" + title + '\'' +
+				", answer='" + answer + '\'' +
+				'}';
+	}
 }

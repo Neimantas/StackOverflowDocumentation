@@ -5,8 +5,10 @@ import java.util.List;
 
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
+import models.java_models.Examples;
 import models.java_models.Topic;
 import models.java_models.mock.DocTagsVersionsMock;
+import models.java_models.mock.ExamplesMock;
 import models.java_models.mock.TopicMock;
 
 public class MockService implements IMockService {
@@ -23,10 +25,10 @@ public class MockService implements IMockService {
 		for (DocTagsVersionsMock item : docTagsVersionsList) {
 			
 			DocTagsVersions temp = new DocTagsVersions();
-				DocTags tempTags = new DocTags();
-				tempTags.id = item.doctagid.id;
-				tempTags.title= item.doctagid.title;
-			temp.doctagid = tempTags;
+//				DocTags tempTags = new DocTags();
+//				tempTags.id = item.doctagid.id;
+//				tempTags.title= item.doctagid.title;
+//			temp.doctagid = tempTags;
 			temp.id = item.id;
 			temp.title = item.title; 
 
@@ -71,6 +73,36 @@ public class MockService implements IMockService {
 		}
 		
 		return listTopic;
+	}
+
+	@Override
+	public List<Examples> getListExample() {
+		// TODO Auto-generated method stub
+		List<ExamplesMock> examplesMockList = new ArrayList<>();
+		for (int i = 0; i <= 10; i++) {
+			examplesMockList.add(new ExamplesMock());
+		}
+		List<Examples> examplesList = new ArrayList<>();
+		for(ExamplesMock examplesMock:examplesMockList) {
+			Examples examples = new Examples();
+			Topic topic = new Topic();
+			DocTags docTags = new DocTags();
+					docTags.id = examplesMock.docTopicId.docTagId.id;
+					docTags.title = examplesMock.docTopicId.docTagId.title;
+				topic.id = examplesMock.docTopicId.id;
+				topic.title = examplesMock.docTopicId.title;
+				topic.answer = examplesMock.docTopicId.answer;
+				topic.docTagId = docTags;
+			examples.id = examplesMock.id;
+			examples.docTopicId = topic;
+			examples.title = examplesMock.title;
+			examples.description = examplesMock.description;
+			
+			examplesList.add(examples);
+			
+			
+		}
+		return examplesList;
 	}
 
 }
