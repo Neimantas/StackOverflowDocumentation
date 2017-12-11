@@ -11,12 +11,13 @@
 <body>
 <h1 align="center">Code Academy</h1>
 <h2 align="center">Stackoverflow data</h2>
-<button class="btn btn-primary" onclick="redirectPage()">Java</button>
+
+<form action="Showdata" method="get">
+    <input type="submit" value="Show Data"/>
+</form>
+
 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"  style="width:500px;height:600px;">
 <script type="text/javascript">
-function redirectPage(){
-    window.location.href="showdata.jsp";
-}
 </script>
 </body>
 </html>
