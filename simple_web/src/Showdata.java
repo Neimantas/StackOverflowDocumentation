@@ -23,18 +23,19 @@ public class Showdata extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("veikia");
-//		MockService mockService = new MockService();
-//		List<DocTagsVersions> list =  mockService.getListObject();
-//		request.setAttribute("listas", list);
+		MockService mockService = new MockService();
+		List<DocTagsVersions> list =  mockService.getListObject();
+		request.setAttribute("listas", list);
 		
-		List<Integer> intList = new ArrayList();
-		intList.add(1);
-		intList.add(2);
-		intList.add(3);
-		request.setAttribute("listas", intList);
+
+//		List<Integer> intList = new ArrayList();
+//		intList.add(1);
+//		intList.add(2);
+//		intList.add(3);
+//		request.setAttribute("listas", intList);
 		
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);
 
 	}

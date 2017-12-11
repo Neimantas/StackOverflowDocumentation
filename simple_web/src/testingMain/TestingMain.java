@@ -19,11 +19,11 @@ public class TestingMain {
 		
 		list.forEach(s->System.out.println(s.id+s.title));
 		
-		List<Topic> listTopic= imockService.getListTopic();
-		listTopic.forEach(s->System.out.println(s.id+s.title+s.answer));
-		
-		List<Examples> listExamples = imockService.getListExample();
-		listExamples.forEach(s->System.out.println(s.id+s.description+s.docTopicId.title+s.docTopicId.docTagId.title));		
+//		List<Topic> listTopic= imockService.getListTopic();
+//		listTopic.forEach(s->System.out.println(s.id+s.title+s.answer));
+//		
+//		List<Examples> listExamples = imockService.getListExample();
+//		listExamples.forEach(s->System.out.println(s.id+s.description+s.docTopicId.title+s.docTopicId.docTagId.title));		
 	}
 
 }

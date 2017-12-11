@@ -59,18 +59,18 @@ public class MockService implements IMockService {
 			}
 		
 		List<Topic> listTopic=new ArrayList();
-		for (TopicMock topicmock:listTopicMock) {
-			Topic topic= new Topic();
-			DocTags tempTags = new DocTags();
-			tempTags.id=topicmock.docTagId.id;
-			tempTags.title=topicmock.docTagId.title;
-			topic.id=topicmock.id;
-			topic.title=topicmock.title;
-			topic.answer=topicmock.answer;
-			topic.docTagId=tempTags;
-			
-			listTopic.add(topic);
-		}
+//		for (TopicMock topicmock:listTopicMock) {
+//			Topic topic= new Topic();
+//			DocTags tempTags = new DocTags();
+//			tempTags.id=topicmock.docTagId.id;
+//			tempTags.title=topicmock.docTagId.title;
+//			topic.id=topicmock.id;
+//			topic.title=topicmock.title;
+//			topic.answer=topicmock.answer;
+//			topic.docTagId=tempTags;
+//			
+//			listTopic.add(topic);
+//		}
 		
 		return listTopic;
 	}
@@ -83,25 +83,25 @@ public class MockService implements IMockService {
 			examplesMockList.add(new ExamplesMock());
 		}
 		List<Examples> examplesList = new ArrayList<>();
-		for(ExamplesMock examplesMock:examplesMockList) {
-			Examples examples = new Examples();
-			Topic topic = new Topic();
-			DocTags docTags = new DocTags();
-					docTags.id = examplesMock.docTopicId.docTagId.id;
-					docTags.title = examplesMock.docTopicId.docTagId.title;
-				topic.id = examplesMock.docTopicId.id;
-				topic.title = examplesMock.docTopicId.title;
-				topic.answer = examplesMock.docTopicId.answer;
-				topic.docTagId = docTags;
-			examples.id = examplesMock.id;
-			examples.docTopicId = topic;
-			examples.title = examplesMock.title;
-			examples.description = examplesMock.description;
-			
-			examplesList.add(examples);
-			
-			
-		}
+//		for(ExamplesMock examplesMock:examplesMockList) {
+//			Examples examples = new Examples();
+//			Topic topic = new Topic();
+//			DocTags docTags = new DocTags();
+//					docTags.id = examplesMock.docTopicId.docTagId.id;
+//					docTags.title = examplesMock.docTopicId.docTagId.title;
+//				topic.id = examplesMock.docTopicId.id;
+//				topic.title = examplesMock.docTopicId.title;
+//				topic.answer = examplesMock.docTopicId.answer;
+//				topic.docTagId = docTags;
+//			examples.id = examplesMock.id;
+//			examples.docTopicId = topic;
+//			examples.title = examplesMock.title;
+//			examples.description = examplesMock.description;
+//			
+//			examplesList.add(examples);
+//			
+//			
+//		}
 		return examplesList;
 	}
 

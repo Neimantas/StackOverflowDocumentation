@@ -21,8 +21,8 @@
 		<tbody>
 			<c:forEach var="list" items="${listas}">
 				<tr>
-					<td>${list}</td>
-					<td>JEZUS</td>
+					<td>${list.id}</td>
+					<td>${list.title}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
