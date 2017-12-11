@@ -6,6 +6,13 @@
   <packaging>war</packaging>
   <name>StackOverflowDocumentation</name>
   <description>We display documented data from json</description>
+  <dependencies>
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.2</version>
+</dependency>
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
