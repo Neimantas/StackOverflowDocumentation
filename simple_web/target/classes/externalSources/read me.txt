@@ -1,0 +1,26 @@
+from topics.json usable fields is:
+long Id
+long DocTagId this field is in relation from doctags.json field Id.
+String Title
+String RemarksMarkdown suggestion to use "answer" in program models
+
+
+
+from doctags.json usable fields is:
+long Id
+String Title
+
+
+
+from doctagsversions.json usable fields is:
+long Id
+long Doctagid this field is in relation from doctags.json field Id.
+String Name suggestion to use "title" in program models
+
+
+
+from examples.json usable fields is:
+long Id
+long DocTopicId  this field is in relation from topics.json field Id.
+String Title
+String BodyMarkdown suggestion to use "description" in program models

@@ -29,13 +29,7 @@ public class Showdata extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("veikia");
-//		MockService mockService = new MockService();
-//		List<DocTagsVersions> list =  mockService.getListObject();
-//		request.setAttribute("listas", list);
-		
-		URL url = getClass().getResource("topics.json");
-//		
+		URL url = getClass().getResource("/externalSources/topics.json");	
 		FileService fileservice=new FileService();
 		File file = new File(url.getPath());
 		String topicjson=fileservice.getFileContent(file);
