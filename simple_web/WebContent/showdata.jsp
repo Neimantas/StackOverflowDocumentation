@@ -15,14 +15,16 @@
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Name</th>
+				<th>Title</th>
+				<th>Answer</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="list" items="${listas}">
+			<c:forEach var="list" items="${topiclist}">
 				<tr>
 					<td>${list.id}</td>
 					<td>${list.title}</td>
+					<td>${list.answer}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

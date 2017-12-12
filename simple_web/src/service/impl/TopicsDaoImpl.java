@@ -8,25 +8,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TopicsDaoImpl implements TopicsDao {
-
-    private ConverterJsonService converterJsonService;
-
-    public TopicsDaoImpl(ConverterJsonService converterJsonService) {
-        this.converterJsonService = converterJsonService;
-    }
-
-    public TopicsDaoImpl() {
-    }
-
-
+	ConverterJsonService conv;
+	
+public TopicsDaoImpl() {
+	conv= new ConverterJsonService();
+}
+  
     @Override
     public List<Topic> getTopics(String json) {
-        return converterJsonService.convertTopicsFromJson(json);
+//    	ConverterJsonService converterJsonService=new ConverterJsonService();
+        return conv.convertTopicsFromJson(json);
     }
 
+    
     @Override
     public Topic getTopicById(String json, long id) {
-        List<Topic> topics = converterJsonService.convertTopicsFromJson(json);
+ 
+        List<Topic> topics = conv.convertTopicsFromJson(json);
         List<Topic> collectedList = topics
                 .stream()
                 .filter(topic -> topic.getId() == id)
