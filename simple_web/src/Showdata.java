@@ -2,6 +2,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,11 @@ public class Showdata extends HttpServlet {
 //		MockService mockService = new MockService();
 //		List<DocTagsVersions> list =  mockService.getListObject();
 //		request.setAttribute("listas", list);
+		
+		URL url = getClass().getResource("topics.json");
 //		
 		FileService fileservice=new FileService();
-		File file = new File("C:\\Users\\Dainius\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
+		File file = new File(url.getPath());
 		String topicjson=fileservice.getFileContent(file);
 				
 		TopicsDao topicsDao=new TopicsDaoImpl();
