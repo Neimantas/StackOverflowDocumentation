@@ -5,6 +5,7 @@ import service.ConverterJsonService;
 import service.TopicsDao;
 
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class TopicsDaoImpl implements TopicsDao {
@@ -32,4 +33,15 @@ public TopicsDaoImpl() {
 
         return collectedList.get(0);
     }
+
+	@Override
+	public List<Topic> findTopicByDocTagId(String json, long docTagId) {
+		// TODO Auto-generated method stub
+		List<Topic> topics = conv.convertTopicsFromJson(json);
+		List<Topic> collectedList = topics
+				.stream()
+				.filter(topic -> topic.getDocTagId(docTagId) == docTagId)
+				.collect(Collectors.toList());
+		return collectedList;
+	}
 }
