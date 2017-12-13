@@ -11,6 +11,13 @@
 </head>
 <body>
 <div class="container">
+<form action="Showdata" method="get">
+<button type="button"  onclick="location.href='Showdata?page=down&currentpage=<%= request.getAttribute("currentpage") %>'"> << </button>
+
+<button type ="button" onclick="location.href='Showdata?page=up&currentpage=<%= request.getAttribute("currentpage") %>'"> >> </button>
+</form>
+</div>
+<div class="container">
 	<table class="table table-striped table-inverse">
 		<thead>
 			<tr>
