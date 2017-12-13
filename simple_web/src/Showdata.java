@@ -27,10 +27,11 @@ public class Showdata extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		URL url = getClass().getResource("/externalSources/topics.json");	
 		FileService fileservice=new FileService();
-		String topicJson=fileservice.getFileContent(url.getPath());
+		File file = new File(url.getPath());
+		String topicjson=fileservice.getFileContent(file);
 				
 		TopicsService topicsService =new TopicsServiceImpl();
-		List<Topic> listTopics= topicsService.getTopics(topicJson);
+		List<Topic> listTopics= topicsService.getTopics(topicjson);
 		request.setAttribute("topiclist", listTopics);
 
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);
