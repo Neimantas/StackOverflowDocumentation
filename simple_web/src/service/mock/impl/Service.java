@@ -1,9 +1,11 @@
-package service;
+package service.mock.impl;
+
+import service.mock.IService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service implements IService{
+public class Service implements IService {
 
 	@Override
 	public List<Object> getListObject() {

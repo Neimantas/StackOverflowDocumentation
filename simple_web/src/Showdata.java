@@ -3,7 +3,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,13 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.java_models.DocTagsVersions;
 import models.java_models.Topic;
-import service.ConverterJsonService;
-import service.FileService;
-import service.MockService;
-import service.TopicsDao;
-import service.impl.TopicsDaoImpl;
+import service.file.FileService;
+import service.TopicsService;
+import service.impl.TopicsServiceImpl;
 
 @WebServlet("/Showdata")
 public class Showdata extends HttpServlet {
@@ -34,8 +30,8 @@ public class Showdata extends HttpServlet {
 		File file = new File(url.getPath());
 		String topicjson=fileservice.getFileContent(file);
 				
-		TopicsDao topicsDao=new TopicsDaoImpl();
-		List<Topic> listTopics=topicsDao.getTopics(topicjson);
+		TopicsService topicsService =new TopicsServiceImpl();
+		List<Topic> listTopics= topicsService.getTopics(topicjson);
 		request.setAttribute("topiclist", listTopics);
 
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);

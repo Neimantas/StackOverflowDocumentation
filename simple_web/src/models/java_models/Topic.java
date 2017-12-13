@@ -14,8 +14,8 @@ public class Topic {
 		this.id = id;
 	}
 
-	public long getDocTagId(long docTagId) {
-		return this.docTagId;
+	public long getDocTagId() {
+		return docTagId;
 	}
 
 	public void setDocTagId(long docTagId) {

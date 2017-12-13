@@ -1,0 +1,45 @@
+package service.impl;
+
+import models.enums.Languages;
+import models.java_models.Topic;
+import service.converter.ConverterJsonService;
+import service.TopicsService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class TopicsServiceImpl implements TopicsService {
+    ConverterJsonService conv;
+
+    public TopicsServiceImpl() {
+        conv = new ConverterJsonService();
+    }
+
+    @Override
+    public List<Topic> getTopics(String json) {
+//    	ConverterJsonService converterJsonService=new ConverterJsonService();
+        return conv.convertTopicsFromJson(json);
+    }
+
+
+    @Override
+    public Topic getTopicById(List<Topic> topics, long id) {
+
+        List<Topic> collectedList = topics
+                .stream()
+                .filter(topic -> topic.getId() == id)
+                .collect(Collectors.toList());
+
+        return collectedList.get(0);
+    }
+
+    @Override
+    public List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages) {
+        // TODO Auto-generated method stub
+        List<Topic> collectedList = topics
+                .stream()
+                .filter(topic -> topic.getDocTagId() == languages.getValue())
+                .collect(Collectors.toList());
+        return collectedList;
+    }
+}

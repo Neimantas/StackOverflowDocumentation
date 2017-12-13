@@ -1,15 +1,15 @@
-package service;
+package service.mock.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
 import models.java_models.Examples;
 import models.java_models.Topic;
 import models.java_models.mock.DocTagsVersionsMock;
 import models.java_models.mock.ExamplesMock;
 import models.java_models.mock.TopicMock;
+import service.mock.IMockService;
 
 public class MockService implements IMockService {
 

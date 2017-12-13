@@ -1,17 +1,19 @@
 package service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import models.enums.Languages;
 import models.java_models.DocTags;
-import service.ConverterJsonService;
-import service.DocTagsDao;
+import service.converter.ConverterJsonService;
+import service.DocTagsService;
 
-public class DocTagsDaoImpl implements DocTagsDao{
+public class DocTagsServiceImpl implements DocTagsService {
 
 	ConverterJsonService converterJsonService;
 	
 	
-	public DocTagsDaoImpl() {
+	public DocTagsServiceImpl() {
 	converterJsonService = new ConverterJsonService();
 	}
 
@@ -26,6 +28,14 @@ public class DocTagsDaoImpl implements DocTagsDao{
 	public DocTags getDocTagsById(String json, long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<DocTags> getDocTagsByLanguage(Languages languages, List<DocTags> docTags) {
+		return docTags
+				.stream()
+				.filter(docTag -> docTag.getId() == languages.getValue())
+				.collect(Collectors.toList());
 	}
 
 }
