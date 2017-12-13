@@ -4,7 +4,10 @@ import java.util.Date;
 
 public class TimestapConverter {
 	public Date timestampStringToDate(String unixString) {
-		long timestamp = Long.parseLong(unixString.substring(8, unixString.length()-8));
+		if(unixString!=null) {
+		long timestamp = Long.parseLong(unixString.substring(6, unixString.length()-7));
 		return new Date(timestamp);
+		}
+		return null;
 	}
 }
