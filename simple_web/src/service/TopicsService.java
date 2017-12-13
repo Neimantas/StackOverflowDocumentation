@@ -11,4 +11,5 @@ public interface TopicsService {
     Topic getTopicById(List<Topic> topics, long id);
 
     List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages);
+    List<Topic> getTopicsByPage(List<Topic> listTopic, int start);
 }

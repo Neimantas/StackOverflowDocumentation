@@ -5,6 +5,7 @@ import models.java_models.Topic;
 import service.converter.ConverterJsonService;
 import service.TopicsService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,4 +43,16 @@ public class TopicsServiceImpl implements TopicsService {
                 .collect(Collectors.toList());
         return collectedList;
     }
+    
+    @Override
+	public List<Topic> getTopicsByPage(List<Topic> listTopic, int start) {
+		// TODO Auto-generated method stub
+
+		List<Topic> listTopicsByPage= new ArrayList();
+		for(int i=start-1; i<=start+10; i++) {
+			listTopicsByPage.add(listTopic.get(i));
+		}
+		return listTopicsByPage;
+	}
+
 }

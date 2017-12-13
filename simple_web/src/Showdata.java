@@ -31,7 +31,32 @@ public class Showdata extends HttpServlet {
 				
 		TopicsService topicsService =new TopicsServiceImpl();
 		List<Topic> listTopics= topicsService.getTopics(topicJson);
-		request.setAttribute("topiclist", listTopics);
+		
+        String page=(request.getParameter("page")!=null) ?
+        		request.getParameter("page"): "";  
+        String current= (request.getParameter("currentpage") != null) ? 
+        		request.getParameter("currentpage") : ""; 
+        
+        int total=10; 
+        int currentpage=(current != null && current=="") ? 1 : Integer.parseInt(current);
+  
+      
+        if (page.equals("up")){  
+        	currentpage=currentpage+total; 
+        }  
+        if (page.equals("down")){  
+        	
+        	currentpage=currentpage-total;
+        }  
+        
+        request.setAttribute("currentpage", currentpage);
+        
+        List<Topic> listTopicByPage=topicsService.getTopicsByPage(listTopics, currentpage);  
+//  		request.setAttribute("topiclistByPage", listTopicByPage);
+  		
+
+		
+		request.setAttribute("topiclist", listTopicByPage);
 
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);
 
