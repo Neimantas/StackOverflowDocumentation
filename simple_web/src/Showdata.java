@@ -27,8 +27,8 @@ public class Showdata extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		URL url = getClass().getResource("/externalSources/topics.json");	
 		FileService fileservice=new FileService();
-		File file = new File(url.getPath());
-		String topicjson=fileservice.getFileContent(file);
+	//	File file = new File(url.getPath());
+		String topicjson=fileservice.getFileContent(url.getPath());
 				
 		TopicsService topicsService =new TopicsServiceImpl();
 		List<Topic> listTopics= topicsService.getTopics(topicjson);
