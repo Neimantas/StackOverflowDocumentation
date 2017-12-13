@@ -24,6 +24,7 @@
 				<th>Id</th>
 				<th>Title</th>
 				<th>Answer</th>
+				<th>Creation Date</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,6 +33,7 @@
 					<td>${list.id}</td>
 					<td>${list.title}</td>
 					<td>${list.answer}</td>
+					<td>${list.creationDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
