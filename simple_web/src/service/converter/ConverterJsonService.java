@@ -13,6 +13,8 @@ import models.java_models.Examples;
 import models.java_models.Topic;
 
 public class ConverterJsonService {
+	
+	
     public List<Topic> convertTopicsFromJson(String json) {
         Gson gson = new Gson();
         DTOtopics[] topicsArray = gson.fromJson(json, DTOtopics[].class);
@@ -21,6 +23,7 @@ public class ConverterJsonService {
     }
 
     private List<Topic> convertDTOTopicsToTopic(List<DTOtopics> dtOtopics) {
+    	TimestapConverter converter = new TimestapConverter();
         List<Topic> topics = new ArrayList<>();
         for (DTOtopics dtOtopic : dtOtopics) {
             Topic topic = new Topic();
@@ -28,6 +31,9 @@ public class ConverterJsonService {
             topic.setDocTagId(dtOtopic.getDocTagId());
             topic.setTitle(dtOtopic.getTitle());
             topic.setAnswer(dtOtopic.getRemarksMarkdown());
+            System.out.println(dtOtopic.getCreationDate());
+            topic.setCreationDate(converter.timestampStringToDate(dtOtopic.getCreationDate()));
+            topic.setLastEditDate(converter.timestampStringToDate(dtOtopic.getLastEditDate()));
             topics.add(topic);
         }
         return topics;
