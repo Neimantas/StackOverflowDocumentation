@@ -9,15 +9,29 @@
 
 </head>
 <body>
-<h1 align="center">Code Academy</h1>
-<h2 align="center">Stackoverflow data</h2>
+<header style="padding: 1em; color: white; background-color: black; clear: left; text-align: center">
+		<h1>Code Academy</h1>
+		<h2>Stackoverflow data</h2>
+</header>
+<div class="container">
+	<ul class="nav">
+  			<li class="nav-item">
+	    <a class="nav-link" href="MainServlet">JAVA</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="Showdata">Documentation</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="info">Info</a>
+  </li>
+ 
+</ul>
+<section>
+<img src="http://www.pcquest.com/wp-content/uploads/2016/12/programming-languages.jpg"  style="width:500px;height:600px;">
 
-<form action="Showdata" method="get">
-    <input type="submit" value="Show Data"/>
-</form>
+</section>
 
-<img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"  style="width:500px;height:600px;">
-<script type="text/javascript">
-</script>
+</div>
+
 </body>
 </html>
