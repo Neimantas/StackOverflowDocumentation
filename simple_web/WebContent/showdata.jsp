@@ -29,8 +29,12 @@
 		<tbody>
 			<c:forEach var="list" items="${topiclist}">
 				<tr>
-					<td>${list.id}</td>
-					<td>${list.title}</td>
+					<td >${list.id}</td>
+					<td id="${list.id}" onclick="passid(this.id)">
+					<a href = "#">
+					${list.title}
+					</a> 
+					</td>
 					<td>${list.answer}</td>
 				</tr>
 			</c:forEach>
@@ -44,6 +48,15 @@
 <button type ="button" onclick="location.href='Showdata?page=up&currentpage=<%= request.getAttribute("currentpage") %>'"> >> </button>
 </form>
 </div>
+<script type="text/javascript">
+function passid(id){
+	alert(id);
+	location.href='Answer?topicid='+id;
+}
+
+
+
+</script>
 
 
 </body>
