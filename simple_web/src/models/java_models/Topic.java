@@ -10,6 +10,7 @@ public class Topic {
 	Date creationDate;
 	Date lastEditDate;
 	
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}

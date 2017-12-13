@@ -1,8 +1,21 @@
 package models.java_models;
 
+import java.util.Date;
+
 public class DocTags {
 	public long id;
 	public String title;
+	Date creationDate;
+	
+	
+	
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 
 	public long getId() {
 		return id;

@@ -14,6 +14,7 @@ import models.java_models.Topic;
 
 public class ConverterJsonService {
 	
+	TimestapConverter converter = new TimestapConverter();
 	
     public List<Topic> convertTopicsFromJson(String json) {
         Gson gson = new Gson();
@@ -23,7 +24,7 @@ public class ConverterJsonService {
     }
 
     private List<Topic> convertDTOTopicsToTopic(List<DTOtopics> dtOtopics) {
-    	TimestapConverter converter = new TimestapConverter();
+    	
         List<Topic> topics = new ArrayList<>();
         for (DTOtopics dtOtopic : dtOtopics) {
             Topic topic = new Topic();
@@ -31,7 +32,6 @@ public class ConverterJsonService {
             topic.setDocTagId(dtOtopic.getDocTagId());
             topic.setTitle(dtOtopic.getTitle());
             topic.setAnswer(dtOtopic.getRemarksMarkdown());
-            System.out.println(dtOtopic.getCreationDate());
             topic.setCreationDate(converter.timestampStringToDate(dtOtopic.getCreationDate()));
             topic.setLastEditDate(converter.timestampStringToDate(dtOtopic.getLastEditDate()));
             topics.add(topic);
@@ -53,6 +53,7 @@ public class ConverterJsonService {
             DocTags docTag = new DocTags();
             docTag.setId(dtOdogTag.getId());
             docTag.setTitle(dtOdogTag.getTitle());
+            docTag.setCreationDate(converter.timestampStringToDate(dtOdogTag.getCreationDate()));
             docTagsList.add(docTag);
         }
         return docTagsList;
@@ -72,6 +73,8 @@ public class ConverterJsonService {
             docTagsVersion.setId(dtOdocTagVersion.getId());
             docTagsVersion.setTitle(dtOdocTagVersion.getName());
             docTagsVersion.setDoctagid(dtOdocTagVersion.getDocTagId());
+            docTagsVersion.setCreationDate(converter.timestampStringToDate(dtOdocTagVersion.getCreationDate()));
+            docTagsVersion.setLastEditDate(converter.timestampStringToDate(dtOdocTagVersion.getLastEditDate()));
             docTagsVersions.add(docTagsVersion);
         }
         return docTagsVersions;
@@ -93,6 +96,8 @@ public class ConverterJsonService {
             example.setTitle(dtOexample.getTitle());
             example.setDescription(dtOexample.getBodyMarkdown());
             example.setDocTopicId(dtOexample.getDocTopicId());
+            example.setCreationDate(converter.timestampStringToDate(dtOexample.getCreationDate()));
+            example.setLastEditDate(converter.timestampStringToDate(dtOexample.getLastEditDate()));
             examplesList.add(example);
         }
         return examplesList;

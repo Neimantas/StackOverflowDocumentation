@@ -1,9 +1,29 @@
 package models.java_models;
 
+import java.util.Date;
+
 public class DocTagsVersions {
 	public long id;
 	public long doctagid; //this field is in relation from doctags.json field Id.
 	public String title; //this field is changed from "Name" in DTO
+	Date  creationDate;
+    Date  lastEditDate;
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getLastEditDate() {
+		return lastEditDate;
+	}
+
+	public void setLastEditDate(Date lastEditDate) {
+		this.lastEditDate = lastEditDate;
+	}
 
 	public long getId() {
 		return id;

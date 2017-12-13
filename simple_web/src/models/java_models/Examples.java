@@ -1,10 +1,32 @@
 package models.java_models;
 
+import java.util.Date;
+
 public class Examples {
 	long id;
 	long docTopicId; //  this field is in relation from topics.json field Id.
 	String title;
 	String description; //this field is changed from "BodyMarkdown" in DTO
+	Date  creationDate;
+    Date  lastEditDate;
+	
+    
+    
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getLastEditDate() {
+		return lastEditDate;
+	}
+
+	public void setLastEditDate(Date lastEditDate) {
+		this.lastEditDate = lastEditDate;
+	}
 
 	public long getId() {
 		return id;
