@@ -29,19 +29,17 @@ public class Showdata extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		String loadPage=(request.getParameter("loadPage")!=null) ?
         		request.getParameter("loadPage"): "";
 		
 		
         		if(!loadPage.isEmpty()) {
         		
-//		String language=request.getParameter("language");
-//	    String topic=request.getParameter("topic");
+		String language=request.getParameter("language");
+	    String topic=request.getParameter("topic");
 	    
-	    String language="java";
-	    String topic="java";
-       
-		
+    	
 		
 		URL url = getClass().getResource("/externalSources/topics.json");	
 		IFileService fileservice=new FileServiceImp();
@@ -54,7 +52,6 @@ public class Showdata extends HttpServlet {
 		List<Topic> allTopicList = topicService.getTopics(topicJson);
 		
 		List<Topic> filteredTopicsList = topicService.findTopicByLanguage(allTopicList, lang, topic);
-		
 		
 		
 //		ITopicsService topicsService =new TopicsServiceImpl();
@@ -87,7 +84,7 @@ public class Showdata extends HttpServlet {
   		
 
     
-		request.setAttribute("topiclistByPage", filteredTopicsList);
+		request.setAttribute("filteredTopicsList", filteredTopicsList);
 
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);
         		}
@@ -96,6 +93,6 @@ public class Showdata extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		System.out.println("veikia2");
+	
 	}
 }

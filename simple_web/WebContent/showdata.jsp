@@ -10,28 +10,34 @@
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="showdata.js"></script>
+
 <title>JAVA data</title>
 </head>
 <body>
 	<div class="container" style="margin-top: 20px">
+	<form method="post" action="Showdata">
 		<div class="row">
 			<div class="col-3">
 				<label for="usr">Select language</label>
 			</div>
 			<div class="col-3">
 				<div class="form-group">
-					<select id="option" class="custom-select">
+				
+					<select name="language" id="option" class="custom-select">
 						<option value="Java">Java</option>
 						<option value="Csharp">Csharp</option>
 						<option value="JavaScript">JavaScript</option>
 						<option value="Swift">Swift</option>
 					</select>
+
+					
 				</div>
 			</div>
 			<div class="col-3">
 				<button class="btn" style="background-color: #C71585; color: white"
-					type="button" onclick="sendLanguageAndTopicParameters()">Search</button>
+					type="submit" >Search</button>
 
 			</div>
 		</div>
@@ -41,14 +47,15 @@
 				<label for="usr">Search topic by tag</label>
 			</div>
 			<div class="col-3">
-				<input type="text" class="form-control" id="topic"
+				<input name="topic" type="text" class="form-control" id="topic"
 					style="width: 200px">
+					<input type="hidden" name="loadPage" value="true"/>
 
 			</div>
 			<div class="col-3"></div>
 		</div>
 
-
+</form>
 	</div>
 	<br>
 	
@@ -75,12 +82,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="list" items="${topiclistByPage}">
+				<c:forEach var="list" items="${filteredTopicsList}">
 					<tr>
-						<td>${list.id}</td>
-						<td id="${list.id}" onclick="passid(this.id)"><a href="#">
-								${list.title} </a></td>
-						<td>${list.creationDate}</td>
+						<td>${list.getId()}</td>
+			<td id="${list.id}" onclick="passid(this.id)"><a href="#">
+								${list.getTitle()} </a></td>
+						<td>${list.getCreationDate()}</td>     
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -97,7 +104,10 @@
 				>></button>
 		</form>
 	</div>
-	
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+<script type="text/javascript" src="showdata.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		function passid(id) {
 			
