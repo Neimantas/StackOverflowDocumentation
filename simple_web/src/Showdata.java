@@ -25,6 +25,13 @@ public class Showdata extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    String language=request.getParameter("language");
+	    String topic=request.getParameter("topic");
+	    
+	    
+
+		
+		
 		URL url = getClass().getResource("/externalSources/topics.json");	
 		FileService fileservice=new FileService();
 		String topicJson=fileservice.getFileContent(url.getPath());
@@ -55,7 +62,7 @@ public class Showdata extends HttpServlet {
 //  		request.setAttribute("topiclistByPage", listTopicByPage);
   		
 
-		
+    
 		request.setAttribute("topiclist", listTopicByPage);
 
 	    request.getRequestDispatcher("showdata.jsp").forward(request, response);

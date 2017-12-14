@@ -12,8 +12,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="container "
-		style="background-color: #D4E6F1; height: 600px">
+	<div class="container " style="background-color: #D4E6F1; height: 600px">
 		<div class="row">
 			<h1 class="marginTop" style="text-align: center; margin-left:20px">StackOverflow
 				documentation by programming languages</h1>
