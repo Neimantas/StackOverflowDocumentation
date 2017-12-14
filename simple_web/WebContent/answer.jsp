@@ -9,17 +9,24 @@
 
 </head>
 <body>
-<div class="container">
-<h1>Topic name: <%= request.getAttribute("topictitle") %></h1>
-<h2 ><%= request.getAttribute("topicanswer") %></h2>
+<div class="container" >
+<div class="row">
+<h2><%= request.getAttribute("topictitle") %></h1>
 </div>
-<form action="ShowExample????" method="get">
-    <input type="submit" value="Show examples"/>
-</form>
+<div class="row">
+<h5 ><%= request.getAttribute("topicanswer") %></h2>
 
+</div>
+<div class="row">
 <form action="Showdata????" method="get">
-    <input type="submit" value="Back to topic list"/>
+    <button class = "btn btn-info" type="submit"/>Back to topic list</button>
 </form>
+</div>
+
+</div>
+
+
+
 
 </body>
 </html>
