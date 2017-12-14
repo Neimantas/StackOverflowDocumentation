@@ -47,6 +47,9 @@ public class Showdata extends HttpServlet {
         if (page.equals("down")){  
         	
         	currentpage=currentpage-total;
+        	if(currentpage<1) {
+        		currentpage=1;
+        	}
         }  
         
         request.setAttribute("currentpage", currentpage);
