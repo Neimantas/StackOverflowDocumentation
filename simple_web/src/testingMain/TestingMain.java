@@ -33,14 +33,16 @@ public class TestingMain {
         String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
 
         TopicsServiceImpl topicsService = new TopicsServiceImpl();
-        List<Topic> topics = topicsService.getTopics(json);
-        List<Topic> topicByDocTagId = topicsService.findTopicByLanguage(topics, Languages.Csharp, "Backgroundworker, Task");
-        for (Topic top: topicByDocTagId) {
-            System.out.println(topicByDocTagId.size());
-            
-            System.out.println(top.getTitle());
-			
-		}
+        
+       
+       List<Topic> stringTest = topicsService.findTopicByLanguage(topicsService.getTopics(json), Languages.Java, "Getting ! Java");
+       
+       for(Topic t : stringTest) {
+    	   System.out.println(t.getTitle());
+       }
+//       System.out.println(stringTest.size());
+        
+        
 
 //		List<Topic> listTopic= imockService.getListTopic();
 //		listTopic.forEach(s->System.out.println(s.id+s.title+s.answer));

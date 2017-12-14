@@ -5,61 +5,93 @@ import models.java_models.Topic;
 import service.converter.ConverterJsonService;
 import service.TopicsService;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TopicsServiceImpl implements TopicsService {
-    ConverterJsonService conv;
+	ConverterJsonService conv;
 
-    public TopicsServiceImpl() {
-        conv = new ConverterJsonService();
-    }
+	public TopicsServiceImpl() {
+		conv = new ConverterJsonService();
+	}
 
-    @Override
-    public List<Topic> getTopics(String json) {
-//    	ConverterJsonService converterJsonService=new ConverterJsonService();
-        return conv.convertTopicsFromJson(json);
-    }
+	@Override
+	public List<Topic> getTopics(String json) {
+		// ConverterJsonService converterJsonService=new ConverterJsonService();
+		return conv.convertTopicsFromJson(json);
+	}
 
+	@Override
+	public Topic getTopicById(List<Topic> topics, long id) {
 
-    @Override
-    public Topic getTopicById(List<Topic> topics, long id) {
+		List<Topic> collectedList = topics.stream().filter(topic -> topic.getId() == id).collect(Collectors.toList());
 
-        List<Topic> collectedList = topics
-                .stream()
-                .filter(topic -> topic.getId() == id)
-                .collect(Collectors.toList());
+		return collectedList.get(0);
+	}
 
-        return collectedList.get(0);
-    }
+	@Override
+	public List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages, String keyword) {
+		// TODO Auto-generated method stub
+		List<String> keywordsList = makeListFromKeyword(keyword);
+		if (keyword == "") {
+			return topics.stream().filter(topic -> topic.getDocTagId() == languages.getValue())
+					.collect(Collectors.toList());
+		} else {
+			List<Topic> topicsList = new ArrayList<>();
+			for (int i = 0; i < keywordsList.size(); i++) {
+				String value = keywordsList.get(i);
+				List<Topic> collectedList = topics.stream()
+						.filter(topic -> topic.getDocTagId() == languages.getValue())
+						.filter(topic -> topic.getTitle().toLowerCase().contains(value.toLowerCase()))
+						.collect(Collectors.toList());
 
-    @Override
-    public List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages, String keyword) {
-        // TODO Auto-generated method stub
-    	if (keyword == "") {
-        List<Topic> collectedList = topics
-                .stream()
-                .filter(topic -> topic.getDocTagId() == languages.getValue())
-                .collect(Collectors.toList());
-        return collectedList;
-    	}
-    	else {
-    		List<Topic> collectedList = topics
-                    .stream()
-                    .filter(topic -> topic.getDocTagId() == languages.getValue())
-                    .filter(topic -> topic.getTitle().toLowerCase().contains(keyword.toLowerCase()))
-                    .collect(Collectors.toList());
-            return collectedList;
-    	}
-    }
-    
-    @Override
+				for (Topic topic : collectedList) {
+					if(!topicsList.contains(topic)) {
+					
+					topicsList.add(topic);
+					}
+				}
+			}
+			return topicsList;
+		}
+	}
+
+	private List<String> makeListFromKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		List<String> keywordList = new ArrayList<>();
+		StringBuilder builder = new StringBuilder();
+		String temp = "";
+		char[] charArray = keyword.toCharArray();
+
+		for (int i = 0; i < charArray.length; i++) {
+			char ch = (char) charArray[i];
+
+			if (!Character.isSpaceChar(ch)) {
+				builder.append(ch);
+				if (i == charArray.length - 1) {
+					keywordList.add(builder.toString());
+				}
+			} else {
+				keywordList.add(builder.toString());
+				builder.setLength(0);
+			}
+
+		}
+		for (int i = 0; i < keywordList.size(); i++) {
+			String temp2 = keywordList.get(i).replaceAll(",", "");
+			keywordList.set(i, temp2);
+		}
+		return keywordList;
+	}
+
+	@Override
 	public List<Topic> getTopicsByPage(List<Topic> listTopic, int start) {
 		// TODO Auto-generated method stub
 
-		List<Topic> listTopicsByPage= new ArrayList();
-		for(int i=start-1; i<=start+10; i++) {
+		List<Topic> listTopicsByPage = new ArrayList();
+		for (int i = start - 1; i <= start + 10; i++) {
 			listTopicsByPage.add(listTopic.get(i));
 		}
 		return listTopicsByPage;
