@@ -35,13 +35,23 @@ public class TopicsServiceImpl implements TopicsService {
     }
 
     @Override
-    public List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages) {
+    public List<Topic> findTopicByLanguage(List<Topic> topics, Languages languages, String keyword) {
         // TODO Auto-generated method stub
+    	if (keyword == "") {
         List<Topic> collectedList = topics
                 .stream()
                 .filter(topic -> topic.getDocTagId() == languages.getValue())
                 .collect(Collectors.toList());
         return collectedList;
+    	}
+    	else {
+    		List<Topic> collectedList = topics
+                    .stream()
+                    .filter(topic -> topic.getDocTagId() == languages.getValue())
+                    .filter(topic -> topic.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                    .collect(Collectors.toList());
+            return collectedList;
+    	}
     }
     
     @Override
