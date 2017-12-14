@@ -26,7 +26,7 @@
 	  <input type="text" class="form-control" id="topic" style="width:200px">
 	</div>
 	
-	<button class="btn btn-primary" type="button" onclick="sendLanguageAndTopicParameters()">Search</button>
+	<button class="btn"  style ="background-color: #C71585; color:white" type="button" onclick="sendLanguageAndTopicParameters()">Search</button>
 </div>
 <br>
 <div class="container">
