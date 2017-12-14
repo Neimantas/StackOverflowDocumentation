@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 
 import models.enums.Languages;
 import models.java_models.DocTags;
-import service.DocTagsService;
+import service.IConverterJsonService;
+import service.IDocTagsService;
 
-public class DocTagsServiceImpl implements DocTagsService {
+public class DocTagsServiceImpl implements IDocTagsService {
 
-	ConverterJsonServiceImp converterJsonService;
+	IConverterJsonService converterJsonService;
 	
 	
 	public DocTagsServiceImpl() {

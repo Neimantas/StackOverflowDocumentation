@@ -1,6 +1,5 @@
 
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -12,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.java_models.Topic;
-import service.TopicsService;
+import service.IFileService;
+import service.ITopicsService;
 import service.impl.FileServiceImp;
 import service.impl.TopicsServiceImpl;
 
@@ -30,9 +30,9 @@ public class Answer extends HttpServlet {
 		 response.setContentType("text/html");
 		 
 		 URL url = getClass().getResource("/externalSources/topics.json");	
-			FileServiceImp fileservice=new FileServiceImp();
+			IFileService fileservice=new FileServiceImp();
 			String topicJson=fileservice.getFileContent(url.getPath());					
-			TopicsService topicsService =new TopicsServiceImpl();
+			ITopicsService topicsService =new TopicsServiceImpl();
 			List<Topic> listTopics= topicsService.getTopics(topicJson);
 		 
 		 int topicid=Integer.parseInt(request.getParameter("topicid"));

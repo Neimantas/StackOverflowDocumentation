@@ -2,7 +2,7 @@ package service;
 
 import java.io.IOException;
 
-public interface FileService {
+public interface IFileService {
 
 	public String getFileContent(String path) throws IOException;
 }

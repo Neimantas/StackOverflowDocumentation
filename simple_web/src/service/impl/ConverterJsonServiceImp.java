@@ -1,21 +1,25 @@
 package service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
 
 import models.DTO.DTOdocTagVersions;
 import models.DTO.DTOdocTags;
 import models.DTO.DTOexamples;
 import models.DTO.DTOtopics;
-import com.google.gson.*;
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
 import models.java_models.Examples;
 import models.java_models.Topic;
-import service.ConverterJsonService;
+import service.IConverterJsonService;
+import service.ITimestapConverter;
 
-public class ConverterJsonServiceImp implements ConverterJsonService{
+public class ConverterJsonServiceImp implements IConverterJsonService{
 	
-	TimestapConverterImp converter = new TimestapConverterImp();
+	ITimestapConverter converter = new TimestapConverterImp();
 	
 	@Override
     public List<Topic> convertTopicsFromJson(String json) {

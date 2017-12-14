@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import service.FileService;
+import service.IFileService;
 
-public class FileServiceImp implements FileService{
+public class FileServiceImp implements IFileService{
 	@Override
     public String getFileContent(String path) throws IOException {
 

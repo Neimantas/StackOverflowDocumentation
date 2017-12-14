@@ -9,7 +9,7 @@ import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
 import models.java_models.Topic;
 import service.IMockService;
-import service.LanguageSearchService;
+import service.ILanguageSearchService;
 import service.impl.DocTagsServiceImpl;
 import service.impl.FileServiceImp;
 import service.impl.MockService;

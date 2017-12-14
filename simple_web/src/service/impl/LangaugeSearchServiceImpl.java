@@ -1,11 +1,11 @@
 package service.impl;
 
-import service.LanguageSearchService;
-import service.TopicsService;
+import service.ILanguageSearchService;
+import service.ITopicsService;
 
-public class LangaugeSearchServiceImpl implements LanguageSearchService {
+public class LangaugeSearchServiceImpl implements ILanguageSearchService {
 
-	TopicsService topicsService;
+	ITopicsService topicsService;
 	
 	
 }

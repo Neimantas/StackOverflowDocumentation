@@ -2,9 +2,9 @@ package service.impl;
 
 import java.util.Date;
 
-import service.TimestapConverter;
+import service.ITimestapConverter;
 
-public class TimestapConverterImp implements TimestapConverter{
+public class TimestapConverterImp implements ITimestapConverter{
 	
 	 @Override
 	public Date timestampStringToDate(String unixString) {
@@ -14,4 +14,6 @@ public class TimestapConverterImp implements TimestapConverter{
 		}
 		return null;
 	}
+	 
+	 public void GetData() {}
 }
