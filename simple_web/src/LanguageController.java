@@ -23,6 +23,9 @@ public class LanguageController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String language = request.getParameter("language");
 		String topic = request.getParameter("topic");
+		
+		
+		
 		System.out.println(language);
 		System.out.println(topic);
 	}
