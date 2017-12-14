@@ -8,12 +8,12 @@ import models.enums.Languages;
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
 import models.java_models.Topic;
-import service.file.FileService;
+import service.IMockService;
+import service.LanguageSearchService;
 import service.impl.DocTagsServiceImpl;
+import service.impl.FileServiceImp;
+import service.impl.MockService;
 import service.impl.TopicsServiceImpl;
-import service.mock.IMockService;
-import service.mock.impl.MockService;
-import service.search.LanguageSearchService;
 
 public class TestingMain {
 
@@ -25,7 +25,7 @@ public class TestingMain {
 //
 //		list.forEach(s->System.out.println(s.id+s.title));
 
-        FileService fileService = new FileService();
+        FileServiceImp fileService = new FileServiceImp();
         String json = fileService.getFileContent("C:\\Users\\CodeAcademy\\IdeaProjects\\Romas Noreika\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
 
         TopicsServiceImpl topicsService = new TopicsServiceImpl();

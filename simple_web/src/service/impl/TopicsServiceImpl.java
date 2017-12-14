@@ -2,7 +2,6 @@ package service.impl;
 
 import models.enums.Languages;
 import models.java_models.Topic;
-import service.converter.ConverterJsonService;
 import service.TopicsService;
 
 import java.util.ArrayList;
@@ -10,10 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TopicsServiceImpl implements TopicsService {
-    ConverterJsonService conv;
+    ConverterJsonServiceImp conv;
 
     public TopicsServiceImpl() {
-        conv = new ConverterJsonService();
+        conv = new ConverterJsonServiceImp();
     }
 
     @Override

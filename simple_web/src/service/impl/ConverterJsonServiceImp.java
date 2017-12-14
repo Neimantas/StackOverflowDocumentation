@@ -1,4 +1,4 @@
-package service.converter;
+package service.impl;
 
 import java.util.*;
 
@@ -11,11 +11,13 @@ import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
 import models.java_models.Examples;
 import models.java_models.Topic;
+import service.ConverterJsonService;
 
-public class ConverterJsonService {
+public class ConverterJsonServiceImp implements ConverterJsonService{
 	
-	TimestapConverter converter = new TimestapConverter();
+	TimestapConverterImp converter = new TimestapConverterImp();
 	
+	@Override
     public List<Topic> convertTopicsFromJson(String json) {
         Gson gson = new Gson();
         DTOtopics[] topicsArray = gson.fromJson(json, DTOtopics[].class);
@@ -39,7 +41,7 @@ public class ConverterJsonService {
         return topics;
     }
 
-
+    @Override
     public List<DocTags> convertTagsFromJson(String json) {
         Gson gson = new Gson();
         DTOdocTags[] dtOdocTagsArray = gson.fromJson(json, DTOdocTags[].class);
@@ -58,7 +60,8 @@ public class ConverterJsonService {
         }
         return docTagsList;
     }
-
+    
+    @Override
     public List<DocTagsVersions> convertDocTagsVersionsFromJson(String json) {
         Gson gson = new Gson();
         DTOdocTagVersions[] dtOdocTagVersions = gson.fromJson(json, DTOdocTagVersions[].class);
@@ -80,7 +83,7 @@ public class ConverterJsonService {
         return docTagsVersions;
     }
 
-
+    @Override
     public List<Examples> convertExamplesFromJson(String json) {
         Gson gson = new Gson();
         DTOexamples[] dtOexamples = gson.fromJson(json, DTOexamples[].class);

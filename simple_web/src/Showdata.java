@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.java_models.Topic;
-import service.file.FileService;
 import service.TopicsService;
+import service.impl.FileServiceImp;
 import service.impl.TopicsServiceImpl;
 
 @WebServlet("/Showdata")
@@ -26,7 +26,7 @@ public class Showdata extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		URL url = getClass().getResource("/externalSources/topics.json");	
-		FileService fileservice=new FileService();
+		FileServiceImp fileservice=new FileServiceImp();
 		String topicJson=fileservice.getFileContent(url.getPath());
 				
 		TopicsService topicsService =new TopicsServiceImpl();

@@ -1,11 +1,14 @@
-package service.file;
+package service.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileService {
+import service.FileService;
+
+public class FileServiceImp implements FileService{
+	@Override
     public String getFileContent(String path) throws IOException {
 
         StringBuffer fileData = new StringBuffer();

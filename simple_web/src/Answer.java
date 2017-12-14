@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.java_models.Topic;
-import service.file.FileService;
 import service.TopicsService;
+import service.impl.FileServiceImp;
 import service.impl.TopicsServiceImpl;
 
 @WebServlet("/Answer")
@@ -30,9 +30,8 @@ public class Answer extends HttpServlet {
 		 response.setContentType("text/html");
 		 
 		 URL url = getClass().getResource("/externalSources/topics.json");	
-			FileService fileservice=new FileService();
-			String topicJson=fileservice.getFileContent(url.getPath());
-					
+			FileServiceImp fileservice=new FileServiceImp();
+			String topicJson=fileservice.getFileContent(url.getPath());					
 			TopicsService topicsService =new TopicsServiceImpl();
 			List<Topic> listTopics= topicsService.getTopics(topicJson);
 		 

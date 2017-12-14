@@ -1,4 +1,4 @@
-package service.search;
+package service;
 
 public interface LanguageSearchService {
 }

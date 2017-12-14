@@ -1,6 +1,6 @@
-package service.search.impl;
+package service.impl;
 
-import service.search.LanguageSearchService;
+import service.LanguageSearchService;
 import service.TopicsService;
 
 public class LangaugeSearchServiceImpl implements LanguageSearchService {
