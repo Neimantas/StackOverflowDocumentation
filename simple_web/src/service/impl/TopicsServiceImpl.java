@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import models.enums.Languages;
-
+import models.java_models.Topic;
 import service.IConverterJsonService;
 import service.ITopicsService;
 
@@ -36,8 +36,9 @@ public class TopicsServiceImpl implements ITopicsService {
 		// TODO Auto-generated method stub
 		List<String> keywordsList = makeListFromKeyword(keyword);
 		if (keyword == "") {
-			return topics.stream().filter(topic -> topic.getDocTagId() == languages.getValue())
+			List<Topic> filterdTopicList = topics.stream().filter(topic -> topic.getDocTagId() == languages.getValue())
 					.collect(Collectors.toList());
+			return filterdTopicList;
 		} else {
 			List<Topic> topicsList = new ArrayList<>();
 			for (int i = 0; i < keywordsList.size(); i++) {

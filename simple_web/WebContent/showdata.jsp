@@ -75,7 +75,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="list" items="${topiclist}">
+				<c:forEach var="list" items="${topiclistByPage}">
 					<tr>
 						<td>${list.id}</td>
 						<td id="${list.id}" onclick="passid(this.id)"><a href="#">
