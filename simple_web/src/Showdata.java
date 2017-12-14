@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.java_models.Topic;
-import service.TopicsService;
+import service.ITopicsService;
+import service.impl.FileServiceImp;
 import service.file.FileService;
 import service.impl.TopicsServiceImpl;
 
@@ -33,10 +34,10 @@ public class Showdata extends HttpServlet {
 		
 		
 		URL url = getClass().getResource("/externalSources/topics.json");	
-		FileService fileservice=new FileService();
+		FileServiceImp fileservice=new FileServiceImp();
 		String topicJson=fileservice.getFileContent(url.getPath());
 				
-		TopicsService topicsService =new TopicsServiceImpl();
+		ITopicsService topicsService =new TopicsServiceImpl();
 		List<Topic> listTopics= topicsService.getTopics(topicJson);
 		
         String page=(request.getParameter("page")!=null) ?
@@ -54,6 +55,9 @@ public class Showdata extends HttpServlet {
         if (page.equals("down")){  
         	
         	currentpage=currentpage-total;
+        	if(currentpage<1) {
+        		currentpage=1;
+        	}
         }  
         
         request.setAttribute("currentpage", currentpage);

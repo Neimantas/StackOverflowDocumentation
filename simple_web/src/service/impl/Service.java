@@ -1,9 +1,9 @@
-package service.mock.impl;
-
-import service.mock.IService;
+package service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import service.IService;
 
 public class Service implements IService {
 

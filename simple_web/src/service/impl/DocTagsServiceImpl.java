@@ -5,16 +5,16 @@ import java.util.stream.Collectors;
 
 import models.enums.Languages;
 import models.java_models.DocTags;
-import service.converter.ConverterJsonService;
-import service.DocTagsService;
+import service.IConverterJsonService;
+import service.IDocTagsService;
 
-public class DocTagsServiceImpl implements DocTagsService {
+public class DocTagsServiceImpl implements IDocTagsService {
 
-	ConverterJsonService converterJsonService;
+	IConverterJsonService converterJsonService;
 	
 	
 	public DocTagsServiceImpl() {
-	converterJsonService = new ConverterJsonService();
+	converterJsonService = new ConverterJsonServiceImp();
 	}
 
 	@Override

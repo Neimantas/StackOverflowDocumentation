@@ -1,8 +1,12 @@
-package service.converter;
+package service.impl;
 
 import java.util.Date;
 
-public class TimestapConverter {
+import service.ITimestapConverter;
+
+public class TimestapConverterImp implements ITimestapConverter{
+	
+	 @Override
 	public Date timestampStringToDate(String unixString) {
 		if(unixString!=null) {
 		long timestamp = Long.parseLong(unixString.substring(6, unixString.length()-7));
@@ -10,4 +14,6 @@ public class TimestapConverter {
 		}
 		return null;
 	}
+	 
+	 public void GetData() {}
 }

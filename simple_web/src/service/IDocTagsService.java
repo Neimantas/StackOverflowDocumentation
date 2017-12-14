@@ -7,7 +7,7 @@ import models.java_models.DocTags;
 
 
 
-public interface DocTagsService {
+public interface IDocTagsService {
 	List<DocTags> getDocTags(String json);
 	DocTags getDocTagsById(String json, long id);
 	List<DocTags> getDocTagsByLanguage(Languages languages, List<DocTags> docTags);

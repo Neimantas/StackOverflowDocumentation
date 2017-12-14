@@ -2,7 +2,7 @@ package service;
 
 import models.java_models.Topic;
 
-public interface AnswerService {
+public interface IAnswerService {
 
      String getAnswerFromTopic(Topic topic);
 }

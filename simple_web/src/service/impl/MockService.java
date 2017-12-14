@@ -1,4 +1,4 @@
-package service.mock.impl;
+package service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import models.java_models.Topic;
 import models.java_models.mock.DocTagsVersionsMock;
 import models.java_models.mock.ExamplesMock;
 import models.java_models.mock.TopicMock;
-import service.mock.IMockService;
+import service.IMockService;
 
 public class MockService implements IMockService {
 

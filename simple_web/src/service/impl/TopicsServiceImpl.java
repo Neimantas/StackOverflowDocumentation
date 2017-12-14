@@ -1,20 +1,20 @@
 package service.impl;
 
-import models.enums.Languages;
-import models.java_models.Topic;
-import service.converter.ConverterJsonService;
-import service.TopicsService;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TopicsServiceImpl implements TopicsService {
-	ConverterJsonService conv;
+import models.enums.Languages;
+
+import service.IConverterJsonService;
+import service.ITopicsService;
+
+public class TopicsServiceImpl implements ITopicsService {
+    IConverterJsonService conv;
 
 	public TopicsServiceImpl() {
-		conv = new ConverterJsonService();
+        conv = new ConverterJsonServiceImp();
 	}
 
 	@Override
