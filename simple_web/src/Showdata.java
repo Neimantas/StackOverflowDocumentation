@@ -1,5 +1,4 @@
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -24,75 +23,90 @@ import service.impl.TopicsServiceImpl;
 public class Showdata extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public Showdata() {
-        super();
-    }
+	public Showdata() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		
+
+		String loadPage = (request.getParameter("loadPage") != null) ? request.getParameter("loadPage") : "";
+		//logika persikrovimo/page cycle
+		
+		if (!loadPage.isEmpty()) {
+
+			List<Topic> filteredList=pageCycle(request, response);
+			List<Topic> paginationlist=pagination(request, response, filteredList);
+
+			
+
+//			List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredTopicsList, currentpage);
+			// request.setAttribute("topiclistByPage", listTopicByPage);
+
+			request.setAttribute("filteredTopicsList", paginationlist);
+
+			request.getRequestDispatcher("showdata.jsp").forward(request, response);
+		}
+
+		else {
+			request.getRequestDispatcher("showdata.jsp").forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+
+	}
 	
-		String loadPage=(request.getParameter("loadPage")!=null) ?
-        		request.getParameter("loadPage"): "";
+	public List<Topic> pageCycle(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		
-        		if(!loadPage.isEmpty()) {
-        		
-		String language=request.getParameter("language");
-	    String topic=request.getParameter("topic");
-	    
-    	
-		
-		URL url = getClass().getResource("/externalSources/topics.json");	
-		IFileService fileservice=new FileServiceImp();
-		String topicJson=fileservice.getFileContent(url.getPath());
-				
-       
-        ILanguageService langaugeService = new LanguageServiceImpl();
+		String language = request.getParameter("language");
+		String topic = request.getParameter("topic");
+
+		URL url = getClass().getResource("/externalSources/topics.json");
+		IFileService fileservice = new FileServiceImp();
+		String topicJson = fileservice.getFileContent(url.getPath());
+
+		ILanguageService langaugeService = new LanguageServiceImpl();
 		Languages lang = langaugeService.setEnums(language);
 		ITopicsService topicService = new TopicsServiceImpl();
 		List<Topic> allTopicList = topicService.getTopics(topicJson);
-		
+
 		List<Topic> filteredTopicsList = topicService.findTopicByLanguage(allTopicList, lang, topic);
+
 		
-		
-//		ITopicsService topicsService =new TopicsServiceImpl();
-//		List<Topic> listTopics= topicsService.getTopics(topicJson);
-//		
-//        String page=(request.getParameter("page")!=null) ?
-//        		request.getParameter("page"): "";  
-//        String current= (request.getParameter("currentpage") != null) ? 
-//        		request.getParameter("currentpage") : ""; 
-//        
-//        int total=10; 
-//        int currentpage=(current != null && current=="") ? 1 : Integer.parseInt(current);
-//  
-//      
-//        if (page.equals("up")){  
-//        	currentpage=currentpage+total; 
-//        }  
-//        if (page.equals("down")){  
-//        	
-//        	currentpage=currentpage-total;
-//        	if(currentpage<1) {
-//        		currentpage=1;
-//        	}
-//        }  
-//        
-//        request.setAttribute("currentpage", currentpage);
-        
-//        List<Topic> listTopicByPage=topicService.getTopicsByPage(filteredTopicsList, currentpage);  
-//  		request.setAttribute("topiclistByPage", listTopicByPage);
-  		
-
-    
-		request.setAttribute("filteredTopicsList", filteredTopicsList);
-
-	    request.getRequestDispatcher("showdata.jsp").forward(request, response);
-        		}
-        		else {request.getRequestDispatcher("showdata.jsp").forward(request, response);}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		return filteredTopicsList;
 	
+	}
+	
+	public List<Topic> pagination(HttpServletRequest request, HttpServletResponse response, List<Topic> filteredList) {
+		
+		String page = (request.getParameter("page") != null) ? request.getParameter("page") : "";
+		String current = (request.getParameter("currentpage") != null) ? request.getParameter("currentpage") : "";
+
+		int total = 10;
+		int currentpage = (current != null && current == "") ? 1 : Integer.parseInt(current);
+
+		if (page.equals("up")) {
+			currentpage = currentpage + total;
+		}
+		if (page.equals("down")) {
+
+			currentpage = currentpage - total;
+			if (currentpage < 1) {
+				currentpage = 1;
+			}
+		}
+
+		request.setAttribute("currentpage", currentpage);
+		ITopicsService topicService = new TopicsServiceImpl();
+		
+		List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredList, currentpage);
+		
+		return listTopicByPage;
+		
 	}
 }
