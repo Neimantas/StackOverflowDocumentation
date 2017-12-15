@@ -30,20 +30,18 @@ public class Showdata extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
 
 		String loadPage = (request.getParameter("loadPage") != null) ? request.getParameter("loadPage") : "";
 		//logika persikrovimo/page cycle
 		
 		if (!loadPage.isEmpty()) {
 			
-			if() {}
+//			if() {}
 
 			List<Topic> filteredList=pageCycle(request, response);
 			
 			List<Topic> paginationlist=pagination(request, response, filteredList);
 
-			
 
 //			List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredTopicsList, currentpage);
 

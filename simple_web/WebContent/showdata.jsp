@@ -59,19 +59,18 @@
 	</div>
 	<br>
 
-
-
+</form>
+<form action="Showdata" method="get">
 	<div class="container">
 
-		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
-			<<</button>
+		<button class="btn btn-info" type="button" 
+			onclick="pagination(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
-			>></button>
+			 onclick="pagination(<%=request.getAttribute("currentpage")%>, 'up')">>></button>
 
 	</div>
+	</form>
 	<div class="container">
 		<table class="table table-striped table-inverse">
 			<thead>
@@ -97,16 +96,14 @@
 	
 	<%=request.getAttribute("currentpage")%>
 
-		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
-			<<</button>
+		<button class="btn btn-info" type="button" 
+			onclick="pagination(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
-			>></button>
+			 onclick="pagination(<%=request.getAttribute("currentpage")%>, 'up')">>></button>
+		
 		
 	</div>
-	</form>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 	<script type="text/javascript" src="showdata.js"></script>
