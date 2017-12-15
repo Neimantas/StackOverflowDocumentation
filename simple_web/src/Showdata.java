@@ -36,8 +36,11 @@ public class Showdata extends HttpServlet {
 		//logika persikrovimo/page cycle
 		
 		if (!loadPage.isEmpty()) {
+			
+			if() {}
 
 			List<Topic> filteredList=pageCycle(request, response);
+			
 			List<Topic> paginationlist=pagination(request, response, filteredList);
 
 			

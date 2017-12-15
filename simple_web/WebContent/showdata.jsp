@@ -64,11 +64,11 @@
 	<div class="container">
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>'">
+			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
 			<<</button>
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>'">
+			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
 			>></button>
 
 	</div>
@@ -98,7 +98,7 @@
 	<%=request.getAttribute("currentpage")%>
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>'">
+			onclick="location.href='Showdata?page=down&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
 			<<</button>
 
 		<button class="btn btn-info" type="button"
