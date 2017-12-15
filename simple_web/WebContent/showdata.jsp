@@ -102,7 +102,7 @@
 			<<</button>
 
 		<button class="btn btn-info" type="button"
-			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>'">
+			onclick="location.href='Showdata?page=up&currentpage=<%=request.getAttribute("currentpage")%>&loadPage=true'">
 			>></button>
 		
 	</div>

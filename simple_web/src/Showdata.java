@@ -43,7 +43,7 @@ public class Showdata extends HttpServlet {
 			
 
 //			List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredTopicsList, currentpage);
-			// request.setAttribute("topiclistByPage", listTopicByPage);
+
 
 			request.setAttribute("filteredTopicsList", paginationlist);
 
