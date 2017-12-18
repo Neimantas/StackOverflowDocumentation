@@ -7,10 +7,12 @@ import java.util.List;
 import models.enums.Languages;
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
+import models.java_models.Examples;
 import models.java_models.Topic;
 import service.IMockService;
 import service.ILanguageSearchService;
 import service.impl.DocTagsServiceImpl;
+import service.impl.ExampleServiceImpl;
 import service.impl.FileServiceImp;
 import service.impl.MockService;
 import service.impl.TopicsServiceImpl;
@@ -30,16 +32,21 @@ public class TestingMain {
 //		list.forEach(s->System.out.println(s.id+s.title));
 
         FileServiceImp fileService = new FileServiceImp();
-        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
+        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\examples.json");
 
         TopicsServiceImpl topicsService = new TopicsServiceImpl();
+        ExampleServiceImpl exampleService = new ExampleServiceImpl();
         
+        List<Examples> examplesList = exampleService.getExampleList(json);
+        List<Examples> finalExampleList = exampleService.getExampleByTipicId(examplesList, 1);
+        
+        System.out.println(finalExampleList.size());
        
-       List<Topic> stringTest = topicsService.findTopicByLanguage(topicsService.getTopics(json), Languages.Java, "Getting ! Java");
-       
-       for(Topic t : stringTest) {
-    	   System.out.println(t.getTitle());
-       }
+//       List<Topic> stringTest = topicsService.findTopicByLanguage(topicsService.getTopics(json), Languages.Java, "Getting ! Java");
+//       
+//       for(Topic t : stringTest) {
+//    	   System.out.println(t.getTitle());
+//       }
 //       System.out.println(stringTest.size());
         
         

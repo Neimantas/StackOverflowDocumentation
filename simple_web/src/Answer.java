@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.java_models.Examples;
 import models.java_models.Topic;
+import service.IExampleService;
 import service.IFileService;
 import service.ITopicsService;
+import service.impl.ExampleServiceImpl;
 import service.impl.FileServiceImp;
 import service.impl.TopicsServiceImpl;
 
@@ -25,7 +28,22 @@ public class Answer extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
+		String loadPage=(request.getParameter("loadPage")!=null) ?
+        		request.getParameter("loadPage"): "";
+        int topicid=Integer.parseInt(request.getParameter("topicid"));
+        if(!loadPage.isEmpty()) {
+        	URL url = getClass().getResource("/externalSources/examples.json");	
+			IFileService fileservice=new FileServiceImp();
+			String topicJson=fileservice.getFileContent(url.getPath());	
+			
+			IExampleService exampleService = new ExampleServiceImpl();
+			List<Examples> examplesList = exampleService.getExampleList(topicJson);
+			List<Examples> examplesListByTopic = exampleService.getExampleByTipicId(examplesList,(long) topicid);
+			request.setAttribute("exampleList", examplesListByTopic);
+			request.getRequestDispatcher("example.jsp").forward(request, response);
+        }
+        		
+        if(loadPage.isEmpty()) {		
 		
 		 response.setContentType("text/html");
 		 
@@ -35,7 +53,7 @@ public class Answer extends HttpServlet {
 			ITopicsService topicsService =new TopicsServiceImpl();
 			List<Topic> listTopics= topicsService.getTopics(topicJson);
 		 
-		 int topicid=Integer.parseInt(request.getParameter("topicid"));
+		 
 		 
 		 String answer=topicsService.getTopicById(listTopics, topicid).getAnswer();
 		 String title=topicsService.getTopicById(listTopics, topicid).getTitle();
@@ -43,9 +61,9 @@ public class Answer extends HttpServlet {
 		 
 		 request.setAttribute("topicanswer", answer);
 		 request.setAttribute("topictitle", title);
-       
+		 request.setAttribute("topicid", topicid);
 	    request.getRequestDispatcher("answer.jsp").forward(request, response);
-
+        		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
