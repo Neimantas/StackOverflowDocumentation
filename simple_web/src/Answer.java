@@ -62,12 +62,11 @@ public class Answer extends HttpServlet {
 		 request.setAttribute("topicanswer", answer);
 		 request.setAttribute("topictitle", title);
 		 request.setAttribute("topicid", topicid);
-	    request.getRequestDispatcher("answer.jsp").forward(request, response);
+		 request.getRequestDispatcher("answer.jsp").forward(request, response);
         		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		System.out.println("veikia2");
 	}
 }

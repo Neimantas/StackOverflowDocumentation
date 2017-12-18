@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import database.SQLiteJDBCDriverConnection;
 import models.enums.Languages;
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
@@ -25,22 +26,24 @@ public class TestingMain {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+    	
+    	SQLiteJDBCDriverConnection.connect();
 
 //		IMockService imockService= new MockService();
 //		List<DocTagsVersions> list= imockService.getListObject();
 //
 //		list.forEach(s->System.out.println(s.id+s.title));
 
-        FileServiceImp fileService = new FileServiceImp();
-        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\examples.json");
-
-        TopicsServiceImpl topicsService = new TopicsServiceImpl();
-        ExampleServiceImpl exampleService = new ExampleServiceImpl();
-        
-        List<Examples> examplesList = exampleService.getExampleList(json);
-        List<Examples> finalExampleList = exampleService.getExampleByTipicId(examplesList, 1);
-        
-        System.out.println(finalExampleList.size());
+//        FileServiceImp fileService = new FileServiceImp();
+//        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\examples.json");
+//
+//        TopicsServiceImpl topicsService = new TopicsServiceImpl();
+//        ExampleServiceImpl exampleService = new ExampleServiceImpl();
+//        
+//        List<Examples> examplesList = exampleService.getExampleList(json);
+//        List<Examples> finalExampleList = exampleService.getExampleByTipicId(examplesList, 1);
+//        
+//        System.out.println(finalExampleList.size());
        
 //       List<Topic> stringTest = topicsService.findTopicByLanguage(topicsService.getTopics(json), Languages.Java, "Getting ! Java");
 //       
