@@ -19,7 +19,7 @@
 </div>
 <div class="row">
 <form action="Showdata????" method="get">
-    <button class = "btn btn-info" type="submit"/>Back to topic list</button>
+    <button class = "btn btn-info" onclick="goTopicBack()">Back to topic list</button>
 </form>
 
 <form action="Answer" method="post">
@@ -32,7 +32,11 @@
 
 </div>
 
-
+<script>
+function goTopicBack() {
+    window.history.back();
+}
+</script>
 
 
 </body>

@@ -33,26 +33,52 @@ public class Showdata extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+	
 		ICallBackCheck callBack = new CallBackCheckImpl();
 		_isCallBack = callBack.postbackControl(request);
 
-		System.out.println(request.getParameter("language"));
-		System.out.println(_isCallBack);
-
 		if (_isCallBack) {
-			List<Topic> filteredList = pageCycle(request);
 		
-				List<Topic> paginationlist = pagination(request, filteredList);
+		 switch(request.getParameter("action")){
+	      
+		 case "searchButton": 
+			 searchButton(request);
+			 request.getRequestDispatcher("showdata.jsp").forward(request, response);
+			 
+		 case  "paginationButton":
+			 pagination(request);
+		
+		  
+		   default:
+			   System.out.println("Default ");
+		 }
 
-				request.setAttribute("filteredTopicsList", paginationlist);
-				request.getRequestDispatcher("showdata.jsp").forward(request, response);
+		
+		        
+
+				
+//				request.getRequestDispatcher("showdata.jsp").forward(request, response);
 			
 		}
 
 		else {
 			request.getRequestDispatcher("showdata.jsp").forward(request, response);
 		}
+	}
+
+	private void pagination(HttpServletRequest request) {
+
+		
+	}
+
+	private void searchButton(HttpServletRequest request) throws IOException {
+		
+		List<Topic> filteredList = pageCycle(request);
+		List<Topic> paginationlist = pagination(request, filteredList);
+		request.setAttribute("filteredTopicsList", paginationlist);
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
