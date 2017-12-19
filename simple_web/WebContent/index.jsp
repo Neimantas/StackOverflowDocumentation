@@ -23,7 +23,7 @@
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere vitae ipsum nec scelerisque. Etiam accumsan nunc venenatis, consectetur nunc ac, gravida erat. Cras vestibulum tellus id malesuada tristique. Cras condimentum dignissim eros, eu fermentum lectus mattis vel. Sed interdum pulvinar sapien luctus dapibus. Donec nisi nibh, porta ut rutrum in, tincidunt vel lectus. In accumsan, tellus vel iaculis vehicula, justo metus blandit dolor, a porttitor diam lectus eu arcu. Sed a eros ultricies, dictum nulla quis, auctor dolor. Duis vitae accumsan ipsum.
 				</p>
 		</div>
-		
+	
 		<div class="row">
 			<div class="col-2 offset-5">
 				<form action="Showdata" method="get">
@@ -34,27 +34,20 @@
 		
 		<div class="row marginTop">
 		<div class="col">
-		
 		</div>
 		<div class="col">
 		<img src="/simple_web/languagespng/java.png" alt="java" width="50" height="50">
 		</div>
 		<div class="col">
 		<img src="/simple_web/languagespng/Csharp.png" alt="c#" width="50" height="50">
-		
 		</div>
 		<div class="col">
 		<img src="/simple_web/languagespng/js.png" alt="js" width="50" height="50">
-		
 		</div>
 		<div class="col">
 		<img src="/simple_web/languagespng/swift.png" alt="swift" width="50" height="50">
-		
 		</div>
 		</div>
-
 	</div>
-
-
 </body>
 </html>
