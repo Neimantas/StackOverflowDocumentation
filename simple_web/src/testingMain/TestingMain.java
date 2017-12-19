@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import database.SQLiteJDBCDriverConnection;
 import models.enums.Languages;
 import models.java_models.DocTags;
 import models.java_models.DocTagsVersions;
@@ -25,9 +24,9 @@ public class TestingMain {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
     	
-    	SQLiteJDBCDriverConnection.connect();
+//    	SQLiteJDBCDriverConnectionImpL.connect();
 
 //		IMockService imockService= new MockService();
 //		List<DocTagsVersions> list= imockService.getListObject();
@@ -60,5 +59,4 @@ public class TestingMain {
 //		List<Examples> listExamples = imockService.getListExample();
 //		listExamples.forEach(s->System.out.println(s.id+s.description+s.docTopicId.title+s.docTopicId.docTagId.title));		
     }
-
 }
