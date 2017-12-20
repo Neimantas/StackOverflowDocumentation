@@ -54,9 +54,9 @@
 <form action="Showdata" method="get">
 	<div class="container">
 		<button class="btn btn-info" type="button" 
-			onclick="pagination(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
+			onclick="pageCycleButton(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
 		<button class="btn btn-info" type="button"
-			 onclick="pagination(<%=request.getAttribute("currentpage")%>, 'up')">>></button>
+			 onclick="pageCycleButton(<%=request.getAttribute("currentpage")%>, 'up')">>></button>
 	</div>
 	</form>
 	
@@ -84,9 +84,9 @@
 	
 	<div class="container">
 		<button class="btn btn-info" type="button" 
-			onclick="pagination(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
+			onclick="pageCycleButton(<%=request.getAttribute("currentpage")%>, 'down')">&#60;&#60;</button>
 		<button class="btn btn-info" type="button"
-			 onclick="pagination(<%=request.getAttribute("currentpage")%>, 'up')">>></button>	
+			 onclick="pageCycleButton(<%=request.getAttribute("currentpage")%>, 'up')">>></button>	
 	</div>
 </body>
 </html>

@@ -15,21 +15,21 @@ function passid(id) {
 	location.href = 'Answer?topicid=' + id;
 }
 
-function pagination(currentPage, direction) {
+function pageCycleButton(currentPage, direction) {
 	var language = document.getElementById("option").value;
 	var topic = document.getElementById("topic").value;
-	url = "Showdata?page="+ direction + "&currentpage=" + currentPage + "&language=" + language+"&postBack=true"
-	+ "&topic=" + topic;
+	url = "Showdata?page=" + direction + "&currentpage=" + currentPage + "&language=" + language +"&topic=" + topic
+	+ "&action=pageCycleButton";
+	
 	ControlPostback();
-
-	location.href =url;
+	location.href = url;
 }
 
-function searchBtnControl(){
-
+function searchBtnControl() {
 	var language = document.getElementById("option").value;
 	var topic = document.getElementById("topic").value;
-	url= "Showdata?language=" +language+ "&topic=" + topic+"&postBack=true&action=searchButton";
+	url= "Showdata?language=" + language + "&topic=" + topic + "&action=searchButton";
+	
 	ControlPostback();
 	location.href =url;
 }
