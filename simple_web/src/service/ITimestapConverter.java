@@ -1,6 +1,6 @@
 package service;
 
-import java.util.Date;
+import java.sql.Date;
 
 public interface ITimestapConverter {
 	public Date timestampStringToDate(String unixString);

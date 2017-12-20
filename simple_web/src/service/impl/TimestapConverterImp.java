@@ -1,6 +1,6 @@
 package service.impl;
 
-import java.util.Date;
+import java.sql.Date;
 
 import service.ITimestapConverter;
 

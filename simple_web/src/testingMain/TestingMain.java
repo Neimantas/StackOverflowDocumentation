@@ -2,6 +2,7 @@ package testingMain;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import models.enums.Languages;
@@ -11,6 +12,7 @@ import models.java_models.Examples;
 import models.java_models.Topic;
 import service.IMockService;
 import service.ILanguageSearchService;
+import service.impl.DatabaseServiceImpl;
 import service.impl.DocTagsServiceImpl;
 import service.impl.ExampleServiceImpl;
 import service.impl.FileServiceImp;
@@ -23,8 +25,9 @@ public class TestingMain {
     /**
      * @param args
      * @throws IOException
+     * @throws SQLException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, SQLException {
     	
 //    	SQLiteJDBCDriverConnectionImpL.connect();
 
@@ -33,10 +36,10 @@ public class TestingMain {
 //
 //		list.forEach(s->System.out.println(s.id+s.title));
 
-//        FileServiceImp fileService = new FileServiceImp();
-//        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\examples.json");
+        FileServiceImp fileService = new FileServiceImp();
+        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
 //
-//        TopicsServiceImpl topicsService = new TopicsServiceImpl();
+        TopicsServiceImpl topicsService = new TopicsServiceImpl();
 //        ExampleServiceImpl exampleService = new ExampleServiceImpl();
 //        
 //        List<Examples> examplesList = exampleService.getExampleList(json);
@@ -53,7 +56,11 @@ public class TestingMain {
         
         
 
-//		List<Topic> listTopic= imockService.getListTopic();
+		List<Topic> listTopic= topicsService.getTopics(json);
+		
+		DatabaseServiceImpl dataService = new DatabaseServiceImpl();
+		dataService.dataToSqlite(listTopic);
+		
 //		listTopic.forEach(s->System.out.println(s.id+s.title+s.answer));
 //		
 //		List<Examples> listExamples = imockService.getListExample();

@@ -1,6 +1,6 @@
 package models.java_models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Topic {
 	long id;
@@ -61,11 +61,19 @@ public class Topic {
 
 	@Override
 	public String toString() {
-		return "Topic{" +
+		return 
+				id +
+				", " + docTagId +
+				", '" + title + '\'' +
+				", '" + answer + '\''+
+				", '" + creationDate + '\''+
+				", '" + lastEditDate + '\'';
+	}
+	public String toDatabaseString() {
+		return 
 				"id=" + id +
 				", docTagId=" + docTagId +
 				", title='" + title + '\'' +
-				", answer='" + answer + '\'' +
-				'}';
+				", answer='" + answer + '\'';
 	}
 }
