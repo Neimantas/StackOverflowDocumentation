@@ -1,31 +1,24 @@
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import models.enums.Languages;
-
 import models.java_models.Topic;
-import service.ICallBackCheck;
 import service.IFileService;
 import service.ILanguageService;
 import service.ITopicsService;
-import service.impl.CallBackCheckImpl;
 import service.impl.FileServiceImp;
 import service.impl.LanguageServiceImpl;
 import service.impl.TopicsServiceImpl;
 
 @WebServlet("/Showdata")
-public class Showdata extends HttpServlet {
+public class Showdata extends HttpServletExtended {
 	private static final long serialVersionUID = 1L;
-	private boolean _isCallBack = false;
+	
 
 	public Showdata() {
 		super();
@@ -33,10 +26,9 @@ public class Showdata extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ICallBackCheck callBack = new CallBackCheckImpl();
-		_isCallBack = callBack.postbackControl(request);
+		
 
-		if (_isCallBack) {
+		if (isCallback(request)) {
 			switch (request.getParameter("action")) {
 			case "searchButton":
 				searchButton(request);
@@ -50,6 +42,8 @@ public class Showdata extends HttpServlet {
 				System.out.println("Default");
 			}
 		} else {
+			request.setAttribute("pageCount", 0);
+			request.setAttribute("FrontEndCurrentPage", 0);
 			request.getRequestDispatcher("showdata.jsp").forward(request, response);
 		}
 	}
