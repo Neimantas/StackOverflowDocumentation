@@ -43,7 +43,7 @@ public class Showdata extends HttpServlet {
 				request.getRequestDispatcher("showdata.jsp").forward(request, response);
 				break;
 			case "pageCycleButton":
-				searchButton(request);
+				pageCycleButton(request);
 				request.getRequestDispatcher("showdata.jsp").forward(request, response);
 				break;
 			default:
@@ -60,16 +60,27 @@ public class Showdata extends HttpServlet {
 
 	}
 
-	// private void pagination(HttpServletRequest request) {
-	//
-	//
-	// }
-
-	private void searchButton(HttpServletRequest request) throws IOException {
+	
+	public List<Topic> searchButton(HttpServletRequest request) throws IOException {
 		List<Topic> filteredList = pageCycle(request);
+		int pageCount = (filteredList.size() % 12 == 0)?(filteredList.size() / 12):(filteredList.size() / 12 + 1);
 		List<Topic> paginationlist = pagination(request, filteredList);
 		request.setAttribute("filteredTopicsList", paginationlist);
+		request.setAttribute("pageCount", pageCount);
+		return filteredList;
 	}
+	
+	public void pageCycleButton(HttpServletRequest request)	throws IOException {
+		List<Topic> filteredList = searchButton(request);
+		
+		int pageCount = (filteredList.size() % 12 == 0)?(filteredList.size() / 12):(filteredList.size() / 12 + 1);
+		List<Topic> paginationlist = pagination(request, filteredList);
+		request.setAttribute("filteredTopicsList", paginationlist);
+		request.setAttribute("pageCount", pageCount);
+	}
+
+	
+	
 
 	public List<Topic> pageCycle(HttpServletRequest request) throws IOException {
 		String language = (request.getParameter("language") != null) ? request.getParameter("language") : "";
@@ -92,7 +103,7 @@ public class Showdata extends HttpServlet {
 		String page = (request.getParameter("page") != null) ? request.getParameter("page") : "";
 		String current = (request.getParameter("currentpage") != null) ? request.getParameter("currentpage") : "";
 
-		int total = 10;
+		int total = 12;
 		int currentpage = (current != null && current == "") ? 1 : Integer.parseInt(current);
 
 		if (page.equals("up")) {
@@ -107,6 +118,7 @@ public class Showdata extends HttpServlet {
 		}
 
 		request.setAttribute("currentpage", currentpage);
+		request.setAttribute("FrontEndCurrentPage", (currentpage - 1) / 12 + 1);
 		ITopicsService topicService = new TopicsServiceImpl();
 
 		List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredList, currentpage);
