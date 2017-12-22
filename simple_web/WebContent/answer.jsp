@@ -23,7 +23,7 @@
 </form>
 
 <form action="Answer" method="post">
-<input type="hidden" name="loadPage" value="true">
+<input type="hidden" name="postBack" value="true">
 <input type="hidden" name="topicid" value="<%= request.getAttribute("topicid") %>">
     <button style="margin-left: 10px" class = "btn btn-info" type="submit"/>Examples</button>
 </form>
@@ -35,6 +35,8 @@
 <script>
 function goTopicBack() {
     window.history.back();
+    
+    
 }
 </script>
 

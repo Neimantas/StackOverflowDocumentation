@@ -20,7 +20,7 @@ import service.impl.FileServiceImp;
 import service.impl.TopicsServiceImpl;
 
 @WebServlet("/Answer")
-public class Answer extends HttpServlet {
+public class Answer extends HttpServletExtended {
 	private static final long serialVersionUID = 1L;
 
     public Answer() {
@@ -28,10 +28,11 @@ public class Answer extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String loadPage=(request.getParameter("loadPage")!=null) ?
-        		request.getParameter("loadPage"): "";
+
         int topicid=Integer.parseInt(request.getParameter("topicid"));
-        if(!loadPage.isEmpty()) {
+        
+        
+        if(isCallback(request)) {
         	URL url = getClass().getResource("/externalSources/examples.json");	
 			IFileService fileservice=new FileServiceImp();
 			String topicJson=fileservice.getFileContent(url.getPath());	
@@ -43,7 +44,7 @@ public class Answer extends HttpServlet {
 			request.getRequestDispatcher("example.jsp").forward(request, response);
         }
         		
-        if(loadPage.isEmpty()) {		
+        if(!isCallback(request)) {		
 		
 		 response.setContentType("text/html");
 		 
