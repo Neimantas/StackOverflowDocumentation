@@ -93,7 +93,11 @@ public class TopicsServiceImpl implements ITopicsService {
 
 		List<Topic> listTopicsByPage = new ArrayList();
 		for (int i = start - 1; i <= start + 10; i++) {
+			try {
 			listTopicsByPage.add(listTopic.get(i));
+			} catch (IndexOutOfBoundsException e) {
+				break;
+			}
 		}
 		return listTopicsByPage;
 	}

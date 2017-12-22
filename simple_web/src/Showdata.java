@@ -100,7 +100,7 @@ public class Showdata extends HttpServletExtended {
 		int total = 12;
 		int currentpage = (current != null && current == "") ? 1 : Integer.parseInt(current);
 
-		if (page.equals("up")) {
+		if (page.equals("up") && currentpage < filteredList.size()) {
 			currentpage = currentpage + total;
 		}
 
@@ -119,5 +119,4 @@ public class Showdata extends HttpServletExtended {
 
 		return listTopicByPage;
 	}
-
 }
