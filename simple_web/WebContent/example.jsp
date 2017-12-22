@@ -21,7 +21,6 @@
 <td>${examples.getTitle()}</td>
 <td>${examples.getDescription()}</td>
 </tr>
-
 </c:forEach>
 </tbody>
 </table>

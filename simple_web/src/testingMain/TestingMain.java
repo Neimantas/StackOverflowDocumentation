@@ -24,10 +24,9 @@ public class TestingMain {
 
     /**
      * @param args
-     * @throws IOException
-     * @throws SQLException 
+     * @throws Exception 
      */
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws Exception {
     	
 //    	SQLiteJDBCDriverConnectionImpL.connect();
 
@@ -37,10 +36,10 @@ public class TestingMain {
 //		list.forEach(s->System.out.println(s.id+s.title));
 
         FileServiceImp fileService = new FileServiceImp();
-        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\topics.json");
+        String json = fileService.getFileContent("C:\\Users\\Simas\\Documents\\StackOverflowDocumentation\\simple_web\\src\\externalSources\\examples.json");
 //
         TopicsServiceImpl topicsService = new TopicsServiceImpl();
-//        ExampleServiceImpl exampleService = new ExampleServiceImpl();
+        ExampleServiceImpl exampleService = new ExampleServiceImpl();
 //        
 //        List<Examples> examplesList = exampleService.getExampleList(json);
 //        List<Examples> finalExampleList = exampleService.getExampleByTipicId(examplesList, 1);
@@ -55,11 +54,11 @@ public class TestingMain {
 //       System.out.println(stringTest.size());
         
         
-
-		List<Topic> listTopic= topicsService.getTopics(json);
+        List<Examples> listExamples = exampleService.getExampleList(json);
+//		List<Topic> listTopic= topicsService.getTopics(json);
 		
 		DatabaseServiceImpl dataService = new DatabaseServiceImpl();
-		dataService.dataToSqlite(listTopic);
+		dataService.dataToSqlite(listExamples);
 		
 //		listTopic.forEach(s->System.out.println(s.id+s.title+s.answer));
 //		

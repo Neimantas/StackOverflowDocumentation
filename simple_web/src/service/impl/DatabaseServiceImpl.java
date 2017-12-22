@@ -2,6 +2,7 @@ package service.impl;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import models.java_models.Topic;
 import service.IDatabaseService;
+import service.IFileService;
 
 public class DatabaseServiceImpl implements IDatabaseService {
 	
@@ -23,7 +25,8 @@ public class DatabaseServiceImpl implements IDatabaseService {
 		 Connection conn = null;
 	        try {
 	            // db parameters
-	            String url = "jdbc:sqlite:C:\\sqlite\\stackoverflow.db";
+	            String url = "jdbc:sqlite:C:\\sqlite\\sqliteTest.db";
+	            
 	            // create a connection to the database
 	            conn = DriverManager.getConnection(url);
 	            
@@ -44,24 +47,24 @@ public class DatabaseServiceImpl implements IDatabaseService {
 	        return conn;
 	}
 	
-	public <T> void dataToSqlite(List<T> list) throws SQLException {
+	public <T> void dataToSqlite(List<T> list) throws Exception {
 		Connection connection = connection();
 		Statement statement = connection.createStatement();
 		String table = list.get(0).getClass().getSimpleName();
 		//String tempfields = "";
 		String tempvalues = "";
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<list.size(); i++) {
 			Field[] propfields = list.get(i).getClass().getDeclaredFields();
 				for(int j=0; j< propfields.length; j++) {    
 					propfields[j].setAccessible(true);
 					Object c = (Object) list.get(i);
 					  try {
 						Object value = propfields[j].get(list.get(i));
-						if(value.toString().isEmpty()) {
-							tempvalues += "NULL";
+						if(value == null || value.toString().isEmpty()) {
+							tempvalues += "NULL,";
 						}
-						if(value instanceof String && !value.toString().isEmpty() 
-								|| value instanceof Date)tempvalues += "'" + value + "', ";
+						else if(value instanceof String && !value.toString().isEmpty() 
+								|| value instanceof Date)tempvalues += "'" + value.toString().replace("'","\"") + "',";
 						
 						else tempvalues += value + ", ";
 						
@@ -74,7 +77,7 @@ public class DatabaseServiceImpl implements IDatabaseService {
 
 				}
 				  System.out.println(i);
-					tempvalues = tempvalues.substring(0, tempvalues.length()-2);
+					tempvalues = tempvalues.substring(0, tempvalues.length()-1);
 					System.out.println(tempvalues);
 					statement.execute("insert into "+table.toLowerCase()+" VALUES (" 
 							+ tempvalues + ");");

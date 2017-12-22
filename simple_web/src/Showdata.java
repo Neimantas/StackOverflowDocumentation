@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.enums.Languages;
+
 import models.java_models.Topic;
+import service.ICallBackCheck;
 import service.IFileService;
 import service.ILanguageService;
 import service.ITopicsService;
+import service.impl.CallBackCheckImpl;
 import service.impl.FileServiceImp;
 import service.impl.LanguageServiceImpl;
 import service.impl.TopicsServiceImpl;
@@ -22,6 +25,7 @@ import service.impl.TopicsServiceImpl;
 @WebServlet("/Showdata")
 public class Showdata extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private boolean _isCallBack = false;
 
 	public Showdata() {
 		super();
@@ -29,29 +33,23 @@ public class Showdata extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		ICallBackCheck callBack = new CallBackCheckImpl();
+		_isCallBack = callBack.postbackControl(request);
 
-		String loadPage = (request.getParameter("loadPage") != null) ? request.getParameter("loadPage") : "";
-		//logika persikrovimo/page cycle
-		
-		if (!loadPage.isEmpty()) {
-			
-//			if() {}
-
-			List<Topic> filteredList=pageCycle(request, response);
-			
-			List<Topic> paginationlist=pagination(request, response, filteredList);
-
-
-//			List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredTopicsList, currentpage);
-
-
-			request.setAttribute("filteredTopicsList", paginationlist);
-
-			request.getRequestDispatcher("showdata.jsp").forward(request, response);
-		}
-
-		else {
+		if (_isCallBack) {
+			switch (request.getParameter("action")) {
+			case "searchButton":
+				searchButton(request);
+				request.getRequestDispatcher("showdata.jsp").forward(request, response);
+				break;
+			case "pageCycleButton":
+				pageCycleButton(request);
+				request.getRequestDispatcher("showdata.jsp").forward(request, response);
+				break;
+			default:
+				System.out.println("Default");
+			}
+		} else {
 			request.getRequestDispatcher("showdata.jsp").forward(request, response);
 		}
 	}
@@ -61,11 +59,32 @@ public class Showdata extends HttpServlet {
 		doGet(request, response);
 
 	}
+
 	
-	public List<Topic> pageCycle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public List<Topic> searchButton(HttpServletRequest request) throws IOException {
+		List<Topic> filteredList = pageCycle(request);
+		int pageCount = (filteredList.size() % 12 == 0)?(filteredList.size() / 12):(filteredList.size() / 12 + 1);
+		List<Topic> paginationlist = pagination(request, filteredList);
+		request.setAttribute("filteredTopicsList", paginationlist);
+		request.setAttribute("pageCount", pageCount);
+		return filteredList;
+	}
+	
+	public void pageCycleButton(HttpServletRequest request)	throws IOException {
+		List<Topic> filteredList = searchButton(request);
 		
-		String language = request.getParameter("language");
-		String topic = request.getParameter("topic");
+		int pageCount = (filteredList.size() % 12 == 0)?(filteredList.size() / 12):(filteredList.size() / 12 + 1);
+		List<Topic> paginationlist = pagination(request, filteredList);
+		request.setAttribute("filteredTopicsList", paginationlist);
+		request.setAttribute("pageCount", pageCount);
+	}
+
+	
+	
+
+	public List<Topic> pageCycle(HttpServletRequest request) throws IOException {
+		String language = (request.getParameter("language") != null) ? request.getParameter("language") : "";
+		String topic = (request.getParameter("topic") != null) ? request.getParameter("topic") : "";
 
 		URL url = getClass().getResource("/externalSources/topics.json");
 		IFileService fileservice = new FileServiceImp();
@@ -75,27 +94,23 @@ public class Showdata extends HttpServlet {
 		Languages lang = langaugeService.setEnums(language);
 		ITopicsService topicService = new TopicsServiceImpl();
 		List<Topic> allTopicList = topicService.getTopics(topicJson);
-
 		List<Topic> filteredTopicsList = topicService.findTopicByLanguage(allTopicList, lang, topic);
 
-		
 		return filteredTopicsList;
-	
 	}
-	
-	public List<Topic> pagination(HttpServletRequest request, HttpServletResponse response, List<Topic> filteredList) {
-		
+
+	public List<Topic> pagination(HttpServletRequest request, List<Topic> filteredList) {
 		String page = (request.getParameter("page") != null) ? request.getParameter("page") : "";
 		String current = (request.getParameter("currentpage") != null) ? request.getParameter("currentpage") : "";
 
-		int total = 10;
+		int total = 12;
 		int currentpage = (current != null && current == "") ? 1 : Integer.parseInt(current);
 
 		if (page.equals("up")) {
 			currentpage = currentpage + total;
 		}
-		if (page.equals("down")) {
 
+		if (page.equals("down")) {
 			currentpage = currentpage - total;
 			if (currentpage < 1) {
 				currentpage = 1;
@@ -103,11 +118,12 @@ public class Showdata extends HttpServlet {
 		}
 
 		request.setAttribute("currentpage", currentpage);
+		request.setAttribute("FrontEndCurrentPage", (currentpage - 1) / 12 + 1);
 		ITopicsService topicService = new TopicsServiceImpl();
-		
+
 		List<Topic> listTopicByPage = topicService.getTopicsByPage(filteredList, currentpage);
-		
+
 		return listTopicByPage;
-		
 	}
+
 }
